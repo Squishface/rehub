@@ -166,50 +166,8 @@
     <button class="btn btn-primary" onclick="openModal('add')">＋ Add Agent</button>
     <button class="btn btn-outline" onclick="buildCards()">⟳ Refresh</button>
   </div>
-  <button class="btn btn-ghost" onclick="openModal('install')">📲 How To Install This As An App</button>
+  <a class="btn btn-ghost" href="https://github.com/Squishface/rehub" target="_blank">⬆ Upload New Agent on GitHub</a>
   <div class="footer-meta">Built <span>May 30, 2026</span> &nbsp;·&nbsp; <span id="file-count">—</span></div>
-</div>
-
-<!-- INSTALL MODAL -->
-<div class="modal-overlay" id="installModal" onclick="closeOnOverlay(event,'installModal')">
-  <div class="modal">
-    <div class="modal-handle"></div>
-    <div class="modal-title">📲 Install As App</div>
-    <div class="modal-sub">Follow these steps on any device. No server app required — this hub lives on the internet.</div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <div class="step-title">Open Chrome on your Android</div>
-          <div class="step-detail">Must be <strong>Chrome</strong> — not Firefox or Samsung Browser.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <div class="step-title">Go to the hub URL</div>
-          <div class="step-url">https://squishface.github.io/rehub/</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <div class="step-title">Add to Home Screen</div>
-          <div class="step-detail">Tap the <strong>three-dot menu ⋮</strong> in Chrome → <strong>"Add to Home screen"</strong> → name it <strong>Kevin's Real Estate Hub</strong> → tap Add.</div>
-          <div class="step-note">✓ Opens full-screen like a native app. No server needed.</div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-body">
-          <div class="step-title">Adding new agents in future</div>
-          <div class="step-detail">Go to <strong>github.com/Squishface/rehub</strong> on any browser → drag and drop your new <strong>.html file</strong> → tap Commit. The hub updates automatically.</div>
-          <div class="step-note">💡 You can delete files the same way — just select the file and delete it on GitHub.</div>
-        </div>
-      </div>
-    </div>
-    <button class="btn btn-outline" style="width:100%;margin-top:20px;" onclick="closeModal('installModal')">Got it — Close</button>
-  </div>
 </div>
 
 <!-- ADD AGENT MODAL -->
