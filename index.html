@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kevin's RE Hub">
+<meta name="application-name" content="Kevin's RE Hub">
+<meta name="theme-color" content="#080d0a">
+<title>Kevin's Real Estate Hub</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTQwIDE0MCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnIiBjeD0iNTAlIiBjeT0iOTAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMGQyMjE4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzA4MGQwYSIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0id2FsbCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmQ3YTU1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzFlNTAzOCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icm9vZiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjM2Q5NDY4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzJkN2E1NSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9Imdsb3ciPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIyLjUiIHJlc3VsdD0iYmx1ciIvPgogICAgICA8ZmVNZXJnZT48ZmVNZXJnZU5vZGUgaW49ImJsdXIiLz48ZmVNZXJnZU5vZGUgaW49IlNvdXJjZUdyYXBoaWMiLz48L2ZlTWVyZ2U+CiAgICA8L2ZpbHRlcj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjE0MCIgaGVpZ2h0PSIxNDAiIGZpbGw9InVybCgjYmcpIi8+CiAgPGVsbGlwc2UgY3g9IjcwIiBjeT0iMTEyIiByeD0iOCIgcnk9IjMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRlY2Y4YSIgc3Ryb2tlLXdpZHRoPSIxLjIiIG9wYWNpdHk9IjEiLz4KICA8ZWxsaXBzZSBjeD0iNzAiIGN5PSIxMTIiIHJ4PSIyMCIgcnk9IjcuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGVjZjhhIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC42NSIvPgogIDxlbGxpcHNlIGN4PSI3MCIgY3k9IjExMiIgcng9IjM0IiByeT0iMTMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRlY2Y4YSIgc3Ryb2tlLXdpZHRoPSIxLjAiIG9wYWNpdHk9IjAuMzgiLz4KICA8ZWxsaXBzZSBjeD0iNzAiIGN5PSIxMTIiIHJ4PSI1MCIgcnk9IjE5IiBmaWxsPSJub25lIiBzdHJva2U9IiM0ZWNmOGEiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjE4Ii8+CiAgPGVsbGlwc2UgY3g9IjcwIiBjeT0iMTEyIiByeD0iNjYiIHJ5PSIyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGVjZjhhIiBzdHJva2Utd2lkdGg9IjAuNiIgb3BhY2l0eT0iMC4wOCIvPgogIDxyZWN0IHg9IjM2IiB5PSI2OCIgd2lkdGg9IjY4IiBoZWlnaHQ9IjUwIiByeD0iMiIgZmlsbD0idXJsKCN3YWxsKSIvPgogIDxwb2x5Z29uIHBvaW50cz0iNzAsMTQgMjQsNzAgMTE2LDcwIiBmaWxsPSJ1cmwoI3Jvb2YpIi8+CiAgPGxpbmUgeDE9IjcwIiB5MT0iMTgiIHgyPSI3MCIgeTI9IjE0IiBzdHJva2U9IiM3ZGViYTgiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNiIvPgogIDxyZWN0IHg9IjU4IiB5PSI4OCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjMwIiByeD0iMiIgZmlsbD0iIzA2MGUwOSIvPgogIDxjaXJjbGUgY3g9Ijc4IiBjeT0iMTA0IiByPSIyIiBmaWxsPSIjNGVjZjhhIiBvcGFjaXR5PSIwLjciLz4KICA8cmVjdCB4PSI0MCIgeT0iNzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxMiIgcng9IjEuNSIgZmlsbD0iIzFhNGEyZSIgc3Ryb2tlPSIjM2Q5NDY4IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8cmVjdCB4PSI4NCIgeT0iNzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxMiIgcng9IjEuNSIgZmlsbD0iIzFhNGEyZSIgc3Ryb2tlPSIjM2Q5NDY4IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8bGluZSB4MT0iMTgiIHkxPSIxMTgiIHgyPSIxMjIiIHkyPSIxMTgiIHN0cm9rZT0iIzRlY2Y4YSIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMjUiLz4KICA8Y2lyY2xlIGN4PSI3MCIgY3k9IjExMiIgcj0iNCIgZmlsbD0iIzVlZjBhMCIgZmlsdGVyPSJ1cmwoI2dsb3cpIi8+CiAgPGNpcmNsZSBjeD0iNzAiIGN5PSIxMTIiIHI9IjIiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg==">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTQwIDE0MCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnIiBjeD0iNTAlIiBjeT0iOTAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMGQyMjE4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzA4MGQwYSIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0id2FsbCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmQ3YTU1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzFlNTAzOCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icm9vZiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjM2Q5NDY4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzJkN2E1NSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9Imdsb3ciPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIyLjUiIHJlc3VsdD0iYmx1ciIvPgogICAgICA8ZmVNZXJnZT48ZmVNZXJnZU5vZGUgaW49ImJsdXIiLz48ZmVNZXJnZU5vZGUgaW49IlNvdXJjZUdyYXBoaWMiLz48L2ZlTWVyZ2U+CiAgICA8L2ZpbHRlcj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjE0MCIgaGVpZ2h0PSIxNDAiIGZpbGw9InVybCgjYmcpIi8+CiAgPGVsbGlwc2UgY3g9IjcwIiBjeT0iMTEyIiByeD0iOCIgcnk9IjMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRlY2Y4YSIgc3Ryb2tlLXdpZHRoPSIxLjIiIG9wYWNpdHk9IjEiLz4KICA8ZWxsaXBzZSBjeD0iNzAiIGN5PSIxMTIiIHJ4PSIyMCIgcnk9IjcuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGVjZjhhIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC42NSIvPgogIDxlbGxpcHNlIGN4PSI3MCIgY3k9IjExMiIgcng9IjM0IiByeT0iMTMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRlY2Y4YSIgc3Ryb2tlLXdpZHRoPSIxLjAiIG9wYWNpdHk9IjAuMzgiLz4KICA8ZWxsaXBzZSBjeD0iNzAiIGN5PSIxMTIiIHJ4PSI1MCIgcnk9IjE5IiBmaWxsPSJub25lIiBzdHJva2U9IiM0ZWNmOGEiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjE4Ii8+CiAgPGVsbGlwc2UgY3g9IjcwIiBjeT0iMTEyIiByeD0iNjYiIHJ5PSIyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGVjZjhhIiBzdHJva2Utd2lkdGg9IjAuNiIgb3BhY2l0eT0iMC4wOCIvPgogIDxyZWN0IHg9IjM2IiB5PSI2OCIgd2lkdGg9IjY4IiBoZWlnaHQ9IjUwIiByeD0iMiIgZmlsbD0idXJsKCN3YWxsKSIvPgogIDxwb2x5Z29uIHBvaW50cz0iNzAsMTQgMjQsNzAgMTE2LDcwIiBmaWxsPSJ1cmwoI3Jvb2YpIi8+CiAgPGxpbmUgeDE9IjcwIiB5MT0iMTgiIHgyPSI3MCIgeTI9IjE0IiBzdHJva2U9IiM3ZGViYTgiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNiIvPgogIDxyZWN0IHg9IjU4IiB5PSI4OCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjMwIiByeD0iMiIgZmlsbD0iIzA2MGUwOSIvPgogIDxjaXJjbGUgY3g9Ijc4IiBjeT0iMTA0IiByPSIyIiBmaWxsPSIjNGVjZjhhIiBvcGFjaXR5PSIwLjciLz4KICA8cmVjdCB4PSI0MCIgeT0iNzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxMiIgcng9IjEuNSIgZmlsbD0iIzFhNGEyZSIgc3Ryb2tlPSIjM2Q5NDY4IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8cmVjdCB4PSI4NCIgeT0iNzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxMiIgcng9IjEuNSIgZmlsbD0iIzFhNGEyZSIgc3Ryb2tlPSIjM2Q5NDY4IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8bGluZSB4MT0iMTgiIHkxPSIxMTgiIHgyPSIxMjIiIHkyPSIxMTgiIHN0cm9rZT0iIzRlY2Y4YSIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMjUiLz4KICA8Y2lyY2xlIGN4PSI3MCIgY3k9IjExMiIgcj0iNCIgZmlsbD0iIzVlZjBhMCIgZmlsdGVyPSJ1cmwoI2dsb3cpIi8+CiAgPGNpcmNsZSBjeD0iNzAiIGN5PSIxMTIiIHI9IjIiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg==">
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiS2V2aW4ncyBSZWFsIEVzdGF0ZSBIdWIiLCJzaG9ydF9uYW1lIjoiUkUgSHViIiwiZGVzY3JpcHRpb24iOiJLZXZpbidzIHBlcnNvbmFsIHJlYWwgZXN0YXRlIGFnZW50IGxhdW5jaGVyIiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwODBkMGEiLCJ0aGVtZV9jb2xvciI6IiMwODBkMGEiLCJvcmllbnRhdGlvbiI6InBvcnRyYWl0LXByaW1hcnkiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCMmFXVjNRbTk0UFNJd0lEQWdNVFF3SURFME1DSWdkMmxrZEdnOUlqVXhNaUlnYUdWcFoyaDBQU0kxTVRJaUlIaHRiRzV6UFNKb2RIUndPaTh2ZDNkM0xuY3pMbTl5Wnk4eU1EQXdMM04yWnlJK0NpQWdQR1JsWm5NK0NpQWdJQ0E4Y21Ga2FXRnNSM0poWkdsbGJuUWdhV1E5SW1KbklpQmplRDBpTlRBbElpQmplVDBpT1RBbElpQnlQU0kyTUNVaVBnb2dJQ0FnSUNBOGMzUnZjQ0J2Wm1aelpYUTlJakFsSWlCemRHOXdMV052Ykc5eVBTSWpNR1F5TWpFNElpOCtDaUFnSUNBZ0lEeHpkRzl3SUc5bVpuTmxkRDBpTVRBd0pTSWdjM1J2Y0MxamIyeHZjajBpSXpBNE1HUXdZU0l2UGdvZ0lDQWdQQzl5WVdScFlXeEhjbUZrYVdWdWRENEtJQ0FnSUR4c2FXNWxZWEpIY21Ga2FXVnVkQ0JwWkQwaWQyRnNiQ0lnZURFOUlqQWlJSGt4UFNJd0lpQjRNajBpTUNJZ2VUSTlJakVpUGdvZ0lDQWdJQ0E4YzNSdmNDQnZabVp6WlhROUlqQWxJaUJ6ZEc5d0xXTnZiRzl5UFNJak1tUTNZVFUxSWk4K0NpQWdJQ0FnSUR4emRHOXdJRzltWm5ObGREMGlNVEF3SlNJZ2MzUnZjQzFqYjJ4dmNqMGlJekZsTlRBek9DSXZQZ29nSUNBZ1BDOXNhVzVsWVhKSGNtRmthV1Z1ZEQ0S0lDQWdJRHhzYVc1bFlYSkhjbUZrYVdWdWRDQnBaRDBpY205dlppSWdlREU5SWpBaUlIa3hQU0l3SWlCNE1qMGlNQ0lnZVRJOUlqRWlQZ29nSUNBZ0lDQThjM1J2Y0NCdlptWnpaWFE5SWpBbElpQnpkRzl3TFdOdmJHOXlQU0lqTTJRNU5EWTRJaTgrQ2lBZ0lDQWdJRHh6ZEc5d0lHOW1abk5sZEQwaU1UQXdKU0lnYzNSdmNDMWpiMnh2Y2owaUl6SmtOMkUxTlNJdlBnb2dJQ0FnUEM5c2FXNWxZWEpIY21Ga2FXVnVkRDRLSUNBZ0lEeG1hV3gwWlhJZ2FXUTlJbWRzYjNjaVBnb2dJQ0FnSUNBOFptVkhZWFZ6YzJsaGJrSnNkWElnYzNSa1JHVjJhV0YwYVc5dVBTSXlMalVpSUhKbGMzVnNkRDBpWW14MWNpSXZQZ29nSUNBZ0lDQThabVZOWlhKblpUNDhabVZOWlhKblpVNXZaR1VnYVc0OUltSnNkWElpTHo0OFptVk5aWEpuWlU1dlpHVWdhVzQ5SWxOdmRYSmpaVWR5WVhCb2FXTWlMejQ4TDJabFRXVnlaMlUrQ2lBZ0lDQThMMlpwYkhSbGNqNEtJQ0E4TDJSbFpuTStDaUFnUEhKbFkzUWdkMmxrZEdnOUlqRTBNQ0lnYUdWcFoyaDBQU0l4TkRBaUlHWnBiR3c5SW5WeWJDZ2pZbWNwSWk4K0NpQWdQR1ZzYkdsd2MyVWdZM2c5SWpjd0lpQmplVDBpTVRFeUlpQnllRDBpT0NJZ2NuazlJak1pSUdacGJHdzlJbTV2Ym1VaUlITjBjbTlyWlQwaUl6UmxZMlk0WVNJZ2MzUnliMnRsTFhkcFpIUm9QU0l4TGpJaUlHOXdZV05wZEhrOUlqRWlMejRLSUNBOFpXeHNhWEJ6WlNCamVEMGlOekFpSUdONVBTSXhNVElpSUhKNFBTSXlNQ0lnY25rOUlqY3VOU0lnWm1sc2JEMGlibTl1WlNJZ2MzUnliMnRsUFNJak5HVmpaamhoSWlCemRISnZhMlV0ZDJsa2RHZzlJakV1TWlJZ2IzQmhZMmwwZVQwaU1DNDJOU0l2UGdvZ0lEeGxiR3hwY0hObElHTjRQU0kzTUNJZ1kzazlJakV4TWlJZ2NuZzlJak0wSWlCeWVUMGlNVE1pSUdacGJHdzlJbTV2Ym1VaUlITjBjbTlyWlQwaUl6UmxZMlk0WVNJZ2MzUnliMnRsTFhkcFpIUm9QU0l4TGpBaUlHOXdZV05wZEhrOUlqQXVNemdpTHo0S0lDQThaV3hzYVhCelpTQmplRDBpTnpBaUlHTjVQU0l4TVRJaUlISjRQU0kxTUNJZ2NuazlJakU1SWlCbWFXeHNQU0p1YjI1bElpQnpkSEp2YTJVOUlpTTBaV05tT0dFaUlITjBjbTlyWlMxM2FXUjBhRDBpTUM0NElpQnZjR0ZqYVhSNVBTSXdMakU0SWk4K0NpQWdQR1ZzYkdsd2MyVWdZM2c5SWpjd0lpQmplVDBpTVRFeUlpQnllRDBpTmpZaUlISjVQU0l5TlNJZ1ptbHNiRDBpYm05dVpTSWdjM1J5YjJ0bFBTSWpOR1ZqWmpoaElpQnpkSEp2YTJVdGQybGtkR2c5SWpBdU5pSWdiM0JoWTJsMGVUMGlNQzR3T0NJdlBnb2dJRHh5WldOMElIZzlJak0ySWlCNVBTSTJPQ0lnZDJsa2RHZzlJalk0SWlCb1pXbG5hSFE5SWpVd0lpQnllRDBpTWlJZ1ptbHNiRDBpZFhKc0tDTjNZV3hzS1NJdlBnb2dJRHh3YjJ4NVoyOXVJSEJ2YVc1MGN6MGlOekFzTVRRZ01qUXNOekFnTVRFMkxEY3dJaUJtYVd4c1BTSjFjbXdvSTNKdmIyWXBJaTgrQ2lBZ1BHeHBibVVnZURFOUlqY3dJaUI1TVQwaU1UZ2lJSGd5UFNJM01DSWdlVEk5SWpFMElpQnpkSEp2YTJVOUlpTTNaR1ZpWVRnaUlITjBjbTlyWlMxM2FXUjBhRDBpTVM0MUlpQnpkSEp2YTJVdGJHbHVaV05oY0QwaWNtOTFibVFpSUc5d1lXTnBkSGs5SWpBdU5pSXZQZ29nSUR4eVpXTjBJSGc5SWpVNElpQjVQU0k0T0NJZ2QybGtkR2c5SWpJMElpQm9aV2xuYUhROUlqTXdJaUJ5ZUQwaU1pSWdabWxzYkQwaUl6QTJNR1V3T1NJdlBnb2dJRHhqYVhKamJHVWdZM2c5SWpjNElpQmplVDBpTVRBMElpQnlQU0l5SWlCbWFXeHNQU0lqTkdWalpqaGhJaUJ2Y0dGamFYUjVQU0l3TGpjaUx6NEtJQ0E4Y21WamRDQjRQU0kwTUNJZ2VUMGlOellpSUhkcFpIUm9QU0l4TmlJZ2FHVnBaMmgwUFNJeE1pSWdjbmc5SWpFdU5TSWdabWxzYkQwaUl6RmhOR0V5WlNJZ2MzUnliMnRsUFNJak0yUTVORFk0SWlCemRISnZhMlV0ZDJsa2RHZzlJakVpTHo0S0lDQThjbVZqZENCNFBTSTROQ0lnZVQwaU56WWlJSGRwWkhSb1BTSXhOaUlnYUdWcFoyaDBQU0l4TWlJZ2NuZzlJakV1TlNJZ1ptbHNiRDBpSXpGaE5HRXlaU0lnYzNSeWIydGxQU0lqTTJRNU5EWTRJaUJ6ZEhKdmEyVXRkMmxrZEdnOUlqRWlMejRLSUNBOGJHbHVaU0I0TVQwaU1UZ2lJSGt4UFNJeE1UZ2lJSGd5UFNJeE1qSWlJSGt5UFNJeE1UZ2lJSE4wY205clpUMGlJelJsWTJZNFlTSWdjM1J5YjJ0bExYZHBaSFJvUFNJd0xqVWlJRzl3WVdOcGRIazlJakF1TWpVaUx6NEtJQ0E4WTJseVkyeGxJR040UFNJM01DSWdZM2s5SWpFeE1pSWdjajBpTkNJZ1ptbHNiRDBpSXpWbFpqQmhNQ0lnWm1sc2RHVnlQU0oxY213b0kyZHNiM2NwSWk4K0NpQWdQR05wY21Oc1pTQmplRDBpTnpBaUlHTjVQU0l4TVRJaUlISTlJaklpSUdacGJHdzlJbmRvYVhSbElpOCtDand2YzNablBnPT0iLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCIsInB1cnBvc2UiOiJhbnkgbWFza2FibGUifV19">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#080d0a; --surface:#0f1a13; --surface2:#162010;
+    --border:#1e3028; --border2:#2a4038;
+    --accent:#4ecf8a; --accent2:#3dba75; --accent-dim:rgba(78,207,138,.12);
+    --text:#e8f0eb; --muted:#5a7a65;
+    --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
+    --pad: 24px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;min-height:100dvh;overscroll-behavior:none;}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(78,207,138,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(78,207,138,.028) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;}
+
+  /* ── HEADER ── */
+  header{position:sticky;top:0;z-index:100;background:rgba(8,13,10,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+  .header-inner{display:flex;align-items:center;gap:14px;padding:calc(env(safe-area-inset-top,0px) + 16px) var(--pad) 16px;}
+  .header-icon{width:38px;height:38px;border-radius:9px;overflow:hidden;flex-shrink:0;box-shadow:0 0 0 1px var(--border2),0 4px 12px rgba(0,0,0,.5);}
+  .header-icon svg{width:38px;height:38px;display:block;}
+  .header-text{flex:1;min-width:0;}
+  .header-title{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.05em;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .header-sub{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+  .status-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0;box-shadow:0 0 6px var(--accent);animation:pulse 2.5s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+  /* ── MAIN ── */
+  main{position:relative;z-index:1;max-width:600px;margin:0 auto;padding:24px var(--pad) 16px;}
+  .section-label{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+  .section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+  /* ── AGENT CARDS ── */
+  #agent-grid{display:flex;flex-direction:column;gap:12px;margin-bottom:24px;}
+  .agent-card{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--text);transition:all .15s;position:relative;overflow:hidden;}
+  .agent-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--accent-dim),transparent 60%);opacity:0;transition:opacity .2s;}
+  .agent-card:active{transform:scale(.98);border-color:var(--accent2);}
+  .agent-card:active::before{opacity:1;}
+  .card-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;position:relative;z-index:1;}
+  .icon-green {background:rgba(78,207,138,.12);border:1px solid rgba(78,207,138,.25);}
+  .icon-blue  {background:rgba(77,168,255,.12);border:1px solid rgba(77,168,255,.25);}
+  .icon-orange{background:rgba(255,160,80,.12);border:1px solid rgba(255,160,80,.25);}
+  .icon-teal  {background:rgba(80,210,200,.12);border:1px solid rgba(80,210,200,.25);}
+  .icon-purple{background:rgba(160,100,255,.12);border:1px solid rgba(160,100,255,.25);}
+  .icon-gray  {background:rgba(120,140,130,.12);border:1px solid rgba(120,140,130,.25);}
+  .card-body{flex:1;min-width:0;position:relative;z-index:1;}
+  .card-name{font-size:15px;font-weight:500;letter-spacing:-.01em;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .card-desc{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .card-arrow{font-size:18px;color:var(--muted);flex-shrink:0;position:relative;z-index:1;}
+
+  /* ── FOOTER ── */
+  .footer-wrap{position:relative;z-index:1;max-width:600px;margin:0 auto;padding:0 var(--pad) calc(env(safe-area-inset-bottom,0px) + 28px);}
+  .footer-divider{height:1px;background:var(--border);margin-bottom:14px;}
+  .action-row{display:flex;gap:8px;margin-bottom:10px;}
+  .btn{font-family:var(--mono);font-size:11px;letter-spacing:.06em;border-radius:8px;padding:12px 14px;cursor:pointer;transition:all .15s;border:none;display:flex;align-items:center;justify-content:center;gap:7px;-webkit-appearance:none;}
+  .btn:active{transform:scale(.97);}
+  .btn-primary{background:var(--accent);color:#060e09;font-weight:600;flex:1;}
+  .btn-outline{background:transparent;color:var(--muted);border:1px solid var(--border2);flex:1;}
+  .btn-outline:active{border-color:var(--accent);color:var(--accent);}
+  .btn-ghost{background:var(--surface);color:var(--muted);border:1px solid var(--border);width:100%;font-size:10px;padding:10px;}
+  .btn-ghost:active{border-color:var(--accent);color:var(--accent);}
+  .footer-meta{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:10px 0 0;}
+  .footer-meta span{color:var(--border2);}
+
+  /* ── MODALS ── */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;}
+  .modal-overlay.open{opacity:1;pointer-events:all;}
+  .modal{background:var(--surface);border:1px solid var(--border2);border-radius:20px 20px 0 0;padding:24px var(--pad) calc(env(safe-area-inset-bottom,0px)+28px);width:100%;max-width:600px;max-height:88vh;overflow-y:auto;transform:translateY(40px);transition:transform .25s ease;}
+  .modal-overlay.open .modal{transform:translateY(0);}
+  .modal-handle{width:36px;height:4px;border-radius:2px;background:var(--border2);margin:0 auto 20px;}
+  .modal-title{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.06em;color:var(--accent);text-transform:uppercase;margin-bottom:4px;}
+  .modal-sub{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5;}
+
+  /* ── STEPS ── */
+  .steps{display:flex;flex-direction:column;}
+  .step{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);}
+  .step:last-child{border-bottom:none;}
+  .step-num{width:28px;height:28px;border-radius:50%;background:var(--accent-dim);border:1px solid rgba(78,207,138,.3);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--accent);flex-shrink:0;margin-top:2px;}
+  .step-title{font-size:13.5px;font-weight:500;margin-bottom:4px;}
+  .step-detail{font-family:var(--mono);font-size:10.5px;color:var(--muted);line-height:1.7;letter-spacing:.02em;}
+  .step-detail strong{color:var(--text);}
+  .step-note{margin-top:6px;background:var(--surface2);border-radius:6px;padding:8px 10px;font-family:var(--mono);font-size:10px;color:var(--accent);line-height:1.5;}
+  .step-url{margin-top:6px;background:var(--bg);border-radius:6px;padding:8px 10px;font-family:var(--mono);font-size:11px;color:#7deba8;letter-spacing:.02em;word-break:break-all;}
+
+  /* ── ADD AGENT FORM ── */
+  .form-group{margin-bottom:16px;}
+  .form-label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:block;}
+  .form-input{width:100%;background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:11px 14px;color:var(--text);font-family:var(--mono);font-size:12px;outline:none;-webkit-appearance:none;}
+  .form-input:focus{border-color:var(--accent);}
+  .icon-picker{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:6px;}
+  .icon-opt{background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:10px;font-size:22px;text-align:center;cursor:pointer;transition:all .15s;}
+  .icon-opt.selected{border-color:var(--accent);background:var(--accent-dim);}
+  .color-picker{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;}
+  .color-opt{padding:7px 12px;border-radius:6px;font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:1px solid transparent;transition:all .15s;}
+  .color-opt.selected{border-color:var(--accent);}
+  .preview-label{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px;}
+  .preview-card{display:flex;align-items:center;gap:16px;background:var(--bg);border:1px solid var(--border2);border-radius:12px;padding:14px 16px;}
+  .preview-icon{width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+  .preview-name{font-size:14px;font-weight:500;margin-bottom:2px;}
+  .preview-desc{font-family:var(--mono);font-size:10px;color:var(--muted);}
+  .saved-agent-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
+  .saved-agent-row:last-child{border-bottom:none;}
+  .saved-file{font-family:var(--mono);font-size:11px;color:var(--muted);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .saved-name-text{font-size:13px;font-weight:500;}
+  .del-btn{font-size:16px;color:var(--muted);background:none;border:none;cursor:pointer;padding:4px 8px;flex-shrink:0;}
+  .del-btn:active{color:#ff6b6b;}
+  .modal-action-row{display:flex;gap:8px;margin-top:16px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-icon">
+      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="hbg" cx="50%" cy="90%" r="60%"><stop offset="0%" stop-color="#0d2218"/><stop offset="100%" stop-color="#080d0a"/></radialGradient>
+          <linearGradient id="hw" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2d7a55"/><stop offset="100%" stop-color="#1e5038"/></linearGradient>
+          <linearGradient id="hr" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3d9468"/><stop offset="100%" stop-color="#2d7a55"/></linearGradient>
+        </defs>
+        <rect width="140" height="140" fill="url(#hbg)"/>
+        <ellipse cx="70" cy="112" rx="8" ry="3" fill="none" stroke="#4ecf8a" stroke-width="1.2" opacity="1"/>
+        <ellipse cx="70" cy="112" rx="20" ry="7.5" fill="none" stroke="#4ecf8a" stroke-width="1.2" opacity="0.65"/>
+        <ellipse cx="70" cy="112" rx="34" ry="13" fill="none" stroke="#4ecf8a" stroke-width="1.0" opacity="0.38"/>
+        <rect x="36" y="68" width="68" height="50" rx="2" fill="url(#hw)"/>
+        <polygon points="70,14 24,70 116,70" fill="url(#hr)"/>
+        <rect x="58" y="88" width="24" height="30" rx="2" fill="#060e09"/>
+        <circle cx="78" cy="104" r="2" fill="#4ecf8a" opacity="0.7"/>
+        <rect x="40" y="76" width="16" height="12" rx="1.5" fill="#1a4a2e" stroke="#3d9468" stroke-width="1"/>
+        <rect x="84" y="76" width="16" height="12" rx="1.5" fill="#1a4a2e" stroke="#3d9468" stroke-width="1"/>
+        <circle cx="70" cy="112" r="4" fill="#5ef0a0"/>
+        <circle cx="70" cy="112" r="2" fill="white"/>
+      </svg>
+    </div>
+    <div class="header-text">
+      <div class="header-title">Kevin's Real Estate Hub</div>
+      <div class="header-sub">Agent Launcher</div>
+    </div>
+    <div class="status-dot"></div>
+  </div>
+</header>
+
+<main>
+  <div class="section-label">Agents</div>
+  <div id="agent-grid">
+    <div style="padding:20px 0;font-family:var(--mono);font-size:10px;color:var(--muted);">Loading agents...</div>
+  </div>
+</main>
+
+<div class="footer-wrap">
+  <div class="footer-divider"></div>
+  <div class="action-row">
+    <button class="btn btn-primary" onclick="openModal('add')">＋ Add Agent</button>
+    <button class="btn btn-outline" onclick="buildCards()">⟳ Refresh</button>
+  </div>
+  <button class="btn btn-ghost" onclick="openModal('install')">📲 How To Install This As An App</button>
+  <div class="footer-meta">Built <span>May 30, 2026</span> &nbsp;·&nbsp; <span id="file-count">—</span></div>
+</div>
+
+<!-- INSTALL MODAL -->
+<div class="modal-overlay" id="installModal" onclick="closeOnOverlay(event,'installModal')">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">📲 Install As App</div>
+    <div class="modal-sub">Follow these steps on any device. No server app required — this hub lives on the internet.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Open Chrome on your Android</div>
+          <div class="step-detail">Must be <strong>Chrome</strong> — not Firefox or Samsung Browser.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Go to the hub URL</div>
+          <div class="step-url">https://squishface.github.io/rehub/</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Add to Home Screen</div>
+          <div class="step-detail">Tap the <strong>three-dot menu ⋮</strong> in Chrome → <strong>"Add to Home screen"</strong> → name it <strong>Kevin's Real Estate Hub</strong> → tap Add.</div>
+          <div class="step-note">✓ Opens full-screen like a native app. No server needed.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Adding new agents in future</div>
+          <div class="step-detail">Go to <strong>github.com/Squishface/rehub</strong> on any browser → drag and drop your new <strong>.html file</strong> → tap Commit. The hub updates automatically.</div>
+          <div class="step-note">💡 You can delete files the same way — just select the file and delete it on GitHub.</div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-outline" style="width:100%;margin-top:20px;" onclick="closeModal('installModal')">Got it — Close</button>
+  </div>
+</div>
+
+<!-- ADD AGENT MODAL -->
+<div class="modal-overlay" id="addModal" onclick="closeOnOverlay(event,'addModal')">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-title">＋ Add Agent</div>
+    <div class="modal-sub">Upload the .html file to GitHub first, then register it here as a card.</div>
+    <div class="step-note" style="margin-bottom:20px;">📂 To upload: go to <strong>github.com/Squishface/rehub</strong> → drag your file in → tap Commit Changes.</div>
+
+    <div class="form-group">
+      <label class="form-label">Filename (exact, including .html)</label>
+      <input class="form-input" id="newFile" type="text" placeholder="e.g. deal-screener.html" oninput="updatePreview()">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Display Name</label>
+      <input class="form-input" id="newName" type="text" placeholder="e.g. Deal Screener" oninput="updatePreview()">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Short Description</label>
+      <input class="form-input" id="newDesc" type="text" placeholder="e.g. Run buy-and-hold numbers on any listing" oninput="updatePreview()">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Icon</label>
+      <div class="icon-picker">
+        <div class="icon-opt selected" onclick="pickIcon(this,'📊')">📊</div>
+        <div class="icon-opt" onclick="pickIcon(this,'🏠')">🏠</div>
+        <div class="icon-opt" onclick="pickIcon(this,'📋')">📋</div>
+        <div class="icon-opt" onclick="pickIcon(this,'👥')">👥</div>
+        <div class="icon-opt" onclick="pickIcon(this,'🔑')">🔑</div>
+        <div class="icon-opt" onclick="pickIcon(this,'⚖️')">⚖️</div>
+        <div class="icon-opt" onclick="pickIcon(this,'✅')">✅</div>
+        <div class="icon-opt" onclick="pickIcon(this,'🔧')">🔧</div>
+        <div class="icon-opt" onclick="pickIcon(this,'📈')">📈</div>
+        <div class="icon-opt" onclick="pickIcon(this,'🎛')">🎛</div>
+        <div class="icon-opt" onclick="pickIcon(this,'📍')">📍</div>
+        <div class="icon-opt" onclick="pickIcon(this,'💡')">💡</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Color</label>
+      <div class="color-picker">
+        <div class="color-opt selected icon-green" style="color:#4ecf8a" onclick="pickColor(this,'icon-green')">Green</div>
+        <div class="color-opt icon-blue"   style="color:#4da8ff" onclick="pickColor(this,'icon-blue')">Blue</div>
+        <div class="color-opt icon-orange" style="color:#ffa050" onclick="pickColor(this,'icon-orange')">Orange</div>
+        <div class="color-opt icon-teal"   style="color:#50d2c8" onclick="pickColor(this,'icon-teal')">Teal</div>
+        <div class="color-opt icon-purple" style="color:#a064ff" onclick="pickColor(this,'icon-purple')">Purple</div>
+      </div>
+    </div>
+    <div class="preview-label">Preview</div>
+    <div class="preview-card">
+      <div class="preview-icon icon-green" id="previewIcon">📊</div>
+      <div>
+        <div class="preview-name" id="previewName">Agent Name</div>
+        <div class="preview-desc" id="previewDesc">Short description</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;">
+      <div class="section-label" style="margin-bottom:10px;">Registered Agents</div>
+      <div id="savedList"></div>
+    </div>
+    <div class="modal-action-row">
+      <button class="btn btn-primary" style="flex:1" onclick="saveAgent()">Save Agent</button>
+      <button class="btn btn-outline" style="flex:1" onclick="closeModal('addModal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ────────────────────────────────────────────────────────────────
+const GITHUB_API  = 'https://api.github.com/repos/Squishface/rehub/contents/';
+const STORAGE_KEY = 'reHub_agents_v1';
+
+// ── AGENT KEYWORD MAP ─────────────────────────────────────────────────────
+// Auto-assigns icon/color/name to files detected via GitHub API
+// Files not matching any keyword get a generic gray card
+const AUTO_MAP = [
+  { kw:['reaps','vetter','event'],        name:'REAPS Event Vetter',     desc:'Scans & vets REAPS events against your criteria', icon:'🏠', color:'icon-green'  },
+  { kw:['buy','hold','calculator','calc'],name:'Buy & Hold Calculator',  desc:'Run buy-and-hold numbers on any property',        icon:'📊', color:'icon-blue'   },
+  { kw:['two','simulator','compare'],     name:'Two-Property Simulator', desc:'Compare two properties side by side',             icon:'⚖️', color:'icon-purple' },
+  { kw:['checklist','purchase'],          name:'Purchase Checklist',     desc:'Step-by-step property acquisition checklist',     icon:'✅', color:'icon-teal'   },
+  { kw:['contact','network','crm'],       name:'Contact Network',        desc:'Investor contacts & follow-up tracker',           icon:'👥', color:'icon-orange' },
+  { kw:['deal','screen'],                 name:'Deal Screener',          desc:'Quick deal analysis and verdict',                 icon:'🔍', color:'icon-blue'   },
+  { kw:['droid','synth','modular'],       name:'DROID Assistant',        desc:'Manual-compliant DROID patch builder',            icon:'🎛', color:'icon-orange' },
+  { kw:['adu','rental','landlord'],       name:'Rental / ADU Tools',     desc:'ADU and landlording resources',                   icon:'🔑', color:'icon-teal'   },
+];
+
+function autoMatch(filename) {
+  const lower = filename.toLowerCase();
+  for (const def of AUTO_MAP) {
+    if (def.kw.some(k => lower.includes(k))) return def;
+  }
+  return null;
+}
+
+function prettyName(filename) {
+  return filename.replace(/\.html?$/i,'').replace(/[-_]/g,' ')
+    .replace(/\w/g, c => c.toUpperCase());
+}
+
+// ── STORAGE ───────────────────────────────────────────────────────────────
+function loadUserAgents() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+  catch(e) { return []; }
+}
+function saveUserAgents(list) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }
+  catch(e) {}
+}
+
+// ── BUILD CARDS ───────────────────────────────────────────────────────────
+// Fetches the GitHub API to get real file list — auto-discovers new files
+// Falls back to user-registered agents if GitHub API fails
+async function buildCards() {
+  const grid = document.getElementById('agent-grid');
+  const counter = document.getElementById('file-count');
+  if (!grid) return;
+  grid.innerHTML = '<div style="padding:20px 0;font-family:var(--mono);font-size:10px;color:var(--muted);">Loading agents...</div>';
+
+  let autoAgents = [];
+
+  try {
+    const res = await fetch(GITHUB_API, { cache:'no-store' });
+    if (res.ok) {
+      const files = await res.json();
+      autoAgents = files
+        .filter(f => f.type === 'file' && /\.html?$/i.test(f.name) && f.name !== 'index.html')
+        .map(f => {
+          const match = autoMatch(f.name);
+          return {
+            file: f.name,
+            name: match ? match.name : prettyName(f.name),
+            desc: match ? match.desc : 'Open agent',
+            icon: match ? match.icon : '📄',
+            color: match ? match.color : 'icon-gray',
+            auto: true
+          };
+        });
+    }
+  } catch(e) {}
+
+  // Merge: auto-discovered + user-registered (skip duplicates)
+  const userAgents = loadUserAgents();
+  const autoFiles = autoAgents.map(a => a.file);
+  const extras = userAgents.filter(a => !autoFiles.includes(a.file));
+  const allAgents = [...autoAgents, ...extras];
+
+  grid.innerHTML = '';
+  if (counter) counter.textContent = allAgents.length + ' agent' + (allAgents.length !== 1 ? 's' : '');
+
+  if (allAgents.length === 0) {
+    grid.innerHTML = '<div style="padding:32px 0;text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.8;">No agents found.<br>Upload .html files to your GitHub repo to see them here.</div>';
+    return;
+  }
+
+  for (const agent of allAgents) {
+    const card = document.createElement('a');
+    card.href = agent.file;
+    card.className = 'agent-card';
+    card.innerHTML = `
+      <div class="card-icon ${agent.color}">${agent.icon}</div>
+      <div class="card-body">
+        <div class="card-name">${agent.name}</div>
+        <div class="card-desc">${agent.desc}</div>
+      </div>
+      <div class="card-arrow">›</div>`;
+    grid.appendChild(card);
+  }
+}
+
+// ── MODALS ────────────────────────────────────────────────────────────────
+function openModal(id) {
+  if (id === 'add') renderSavedList();
+  const el = document.getElementById(id + 'Modal');
+  if (el) { el.classList.add('open'); document.body.style.overflow = 'hidden'; }
+}
+function closeModal(id) {
+  const el = document.getElementById(id);
+  if (el) { el.classList.remove('open'); document.body.style.overflow = ''; }
+}
+function closeOnOverlay(e, id) {
+  if (e.target === document.getElementById(id)) closeModal(id);
+}
+
+// ── ADD AGENT ─────────────────────────────────────────────────────────────
+let selectedIcon = '📊', selectedColor = 'icon-green';
+
+function pickIcon(el, emoji) {
+  document.querySelectorAll('.icon-opt').forEach(e => e.classList.remove('selected'));
+  if (el) el.classList.add('selected');
+  selectedIcon = emoji; updatePreview();
+}
+function pickColor(el, cls) {
+  document.querySelectorAll('.color-opt').forEach(e => e.classList.remove('selected'));
+  if (el) el.classList.add('selected');
+  selectedColor = cls; updatePreview();
+}
+function updatePreview() {
+  try {
+    const n = (document.getElementById('newName').value||'').trim()||'Agent Name';
+    const d = (document.getElementById('newDesc').value||'').trim()||'Short description';
+    const pn=document.getElementById('previewName'), pd=document.getElementById('previewDesc'), pi=document.getElementById('previewIcon');
+    if(pn)pn.textContent=n; if(pd)pd.textContent=d;
+    if(pi){pi.textContent=selectedIcon;pi.className='preview-icon '+selectedColor;}
+  } catch(e){}
+}
+function saveAgent() {
+  try {
+    const file=(document.getElementById('newFile').value||'').trim();
+    const name=(document.getElementById('newName').value||'').trim();
+    const desc=(document.getElementById('newDesc').value||'').trim();
+    if(!file||!name){alert('Please enter a filename and display name.');return;}
+    if(!/\.html?$/i.test(file)){alert('Filename must end in .html');return;}
+    const agents=loadUserAgents();
+    if(agents.find(a=>a.file===file)){alert('Already registered.');return;}
+    agents.push({file,name,desc:desc||'Open agent',icon:selectedIcon,color:selectedColor});
+    saveUserAgents(agents);
+    document.getElementById('newFile').value='';
+    document.getElementById('newName').value='';
+    document.getElementById('newDesc').value='';
+    selectedIcon='📊';selectedColor='icon-green';
+    document.querySelectorAll('.icon-opt').forEach((e,i)=>e.classList.toggle('selected',i===0));
+    document.querySelectorAll('.color-opt').forEach((e,i)=>e.classList.toggle('selected',i===0));
+    updatePreview();renderSavedList();buildCards();
+  } catch(e){alert('Could not save. Please try again.');}
+}
+function renderSavedList() {
+  try {
+    const agents=loadUserAgents();
+    const el=document.getElementById('savedList');
+    if(!el)return;
+    if(agents.length===0){el.innerHTML='<div style="font-family:var(--mono);font-size:10px;color:var(--muted);padding:8px 0;">No manually registered agents.</div>';return;}
+    el.innerHTML=agents.map((a,i)=>`
+      <div class="saved-agent-row">
+        <div style="font-size:18px;flex-shrink:0">${a.icon}</div>
+        <div style="flex:1;min-width:0">
+          <div class="saved-name-text">${a.name}</div>
+          <div class="saved-file">${a.file}</div>
+        </div>
+        <button class="del-btn" onclick="deleteAgent(${i})">✕</button>
+      </div>`).join('');
+  } catch(e){}
+}
+function deleteAgent(i) {
+  try {
+    const agents=loadUserAgents();
+    if(i<0||i>=agents.length)return;
+    if(!confirm('Remove "'+agents[i].name+'"?'))return;
+    agents.splice(i,1);saveUserAgents(agents);renderSavedList();buildCards();
+  } catch(e){}
+}
+
+buildCards();
+</script>
+</body>
+</html>
