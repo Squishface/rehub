@@ -396,7 +396,7 @@ async function runScan() {
     // PHASE 1: Fetch and vet events
     const p1Response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "anthropic-dangerous-direct-browser-access": "true" },
       body: JSON.stringify({
         model: MODEL,
         max_tokens: 1000,
@@ -468,7 +468,7 @@ async function analyzeManual() {
   try {
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "anthropic-dangerous-direct-browser-access": "true" },
       body: JSON.stringify({
         model: MODEL,
         max_tokens: 1000,
@@ -663,7 +663,7 @@ async function toggleBio(uid, name, eventTitle, eventContext) {
     const prompt = buildBioPrompt(name, eventTitle, eventContext);
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "anthropic-dangerous-direct-browser-access": "true" },
       body: JSON.stringify({
         model: MODEL,
         max_tokens: 1000,
