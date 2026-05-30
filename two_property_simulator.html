@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two-Property Growth & Loan Payoff Simulator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #1e293b; padding: 0.5rem; }
+        .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem 1rem; text-align: center; }
+        .header h1 { font-size: 1.3rem; margin-bottom: 0.25rem; }
+        .header p { font-size: 0.85rem; opacity: 0.9; }
+        .content { padding: 1rem; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+        .section { background: #f9fafb; padding: 1rem; border-radius: 10px; border-left: 4px solid #667eea; }
+        .section-title { font-size: 1rem; font-weight: 700; color: #667eea; margin-bottom: 0.75rem; }
+        .input-group { margin-bottom: 1rem; }
+        .label { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.3rem; display: block; }
+        input[type="number"] { width: 100%; padding: 0.6rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; }
+        input[type="number"]:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); }
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .btn { padding: 0.85rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.95rem; width: 100%; }
+        .chart-container { background: white; padding: 1rem; border-radius: 10px; margin: 1.5rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.05); overflow-x: auto; }
+        .chart-wrapper { position: relative; height: 350px; min-width: 300px; }
+        .results-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin: 1.5rem 0; }
+        .result-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem; border-radius: 10px; text-align: center; }
+        .result-label { font-size: 0.75rem; opacity: 0.9; text-transform: uppercase; font-weight: 600; }
+        .result-value { font-size: 1.4rem; font-weight: 700; margin-top: 0.4rem; word-break: break-word; }
+        .timeline { background: white; padding: 1rem; border-radius: 10px; border: 2px solid #e5e7eb; overflow-x: auto; }
+        .timeline-item { padding: 0.75rem; margin-bottom: 0.75rem; background: #f9fafb; border-left: 4px solid #10b981; border-radius: 6px; }
+        .timeline-item.phase1 { border-left-color: #f59e0b; }
+        .timeline-item.phase2 { border-left-color: #3b82f6; }
+        .timeline-item.complete { border-left-color: #10b981; }
+        .timeline-header { font-weight: 700; color: #1e293b; margin-bottom: 0.3rem; font-size: 0.95rem; }
+        .timeline-detail { font-size: 0.85rem; color: #666; word-break: break-word; }
+        .warning { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 0.75rem; border-radius: 6px; margin: 1rem 0; }
+        .warning-text { font-size: 0.85rem; color: #92400e; }
+        
+        @media (max-width: 768px) {
+            .header { padding: 1rem 0.75rem; }
+            .header h1 { font-size: 1.1rem; }
+            .content { padding: 0.75rem; }
+            .grid { grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 1rem; }
+            .section { padding: 0.75rem; }
+            .section-title { font-size: 0.95rem; margin-bottom: 0.5rem; }
+            .input-group { margin-bottom: 0.75rem; }
+            .label { font-size: 0.8rem; margin-bottom: 0.25rem; }
+            input[type="number"] { padding: 0.5rem; font-size: 0.9rem; }
+            .results-grid { grid-template-columns: 1fr; gap: 0.5rem; margin: 1rem 0; }
+            .result-card { padding: 0.75rem; }
+            .result-label { font-size: 0.7rem; }
+            .result-value { font-size: 1.2rem; }
+            .chart-container { padding: 0.75rem; margin: 1rem 0; }
+            .chart-wrapper { height: 300px; }
+            .timeline { padding: 0.75rem; }
+            .timeline-item { padding: 0.6rem; margin-bottom: 0.6rem; }
+            .timeline-header { font-size: 0.9rem; }
+            .timeline-detail { font-size: 0.8rem; }
+            .btn { padding: 0.75rem; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏠 Two-Property Growth & Loan Payoff Simulator</h1>
+            <p>Camano ADU + Property B | Sequential Debt Payoff Timeline</p>
+        </div>
+        
+        <div class="content">
+            <!-- INPUT SECTION -->
+            <div class="grid">
+                <div class="section">
+                    <div class="section-title">Property A (Camano ADU)</div>
+                    
+                    <div class="input-group">
+                        <label class="label">Current Mortgage</label>
+                        <input type="number" id="mortgageA" value="4000" onchange="calculate()">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="label">Tenant A Monthly Rent</label>
+                        <input type="number" id="rentA" value="2500" onchange="calculate()">
+                    </div>
+                    
+                    <div class class="input-group">
+                        <label class="label">Home Improvement Loan ($)</label>
+                        <input type="number" id="improvementLoan" value="15000" onchange="calculate()">
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">Property B (Future Rental)</div>
+                    
+                    <div class="input-group">
+                        <label class="label">Purchase Price</label>
+                        <input type="number" id="priceB" value="300000" onchange="calculate()">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="label">Down Payment %</label>
+                        <input type="number" id="downPaymentPercent" value="20" onchange="calculate()">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="label">Mortgage Interest Rate %</label>
+                        <input type="number" id="interestRate" value="7.5" step="0.1" onchange="calculate()">
+                        <div style="font-size: 0.8rem; color: #667eea; margin-top: 0.3rem;">
+                            <a href="https://www.bankrate.com/mortgages/mortgage-rates/" target="_blank" style="color: #667eea; text-decoration: none;">📊 Check Current Rates (BankRate)</a> | 
+                            <a href="https://www.zillow.com/mortgages/" target="_blank" style="color: #667eea; text-decoration: none;">🏠 Zillow Mortgages</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid">
+                <div class="section">
+                    <div class="section-title">Property B Financials</div>
+                    
+                    <div class="input-group">
+                        <label class="label">Loan Term (Years)</label>
+                        <input type="number" id="loanTerm" value="30" onchange="calculate()">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="label">Expected Monthly Rent</label>
+                        <input type="number" id="rentB" value="2500" onchange="calculate()">
+                        <div style="font-size: 0.8rem; color: #667eea; margin-top: 0.3rem;">
+                            <a href="https://www.zillow.com/homes/for_rent/" target="_blank" style="color: #667eea; text-decoration: none;">🔍 Zillow Rentals</a> | 
+                            <a href="https://www.apartmentlist.com/" target="_blank" style="color: #667eea; text-decoration: none;">📍 ApartmentList</a> | 
+                            <a href="https://www.padmapper.com/" target="_blank" style="color: #667eea; text-decoration: none;">🗺️ PadMapper</a>
+                        </div>
+                        <div style="font-size: 0.75rem; color: #666; margin-top: 0.3rem;">💡 Search by city/zip code to find avg rents in Austin, Pittsburgh, Indiana, or your target area</div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="label">Operating Expenses (% of rent)</label>
+                        <input type="number" id="opexPercent" value="25" onchange="calculate()">
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">Debt Payoff Strategy</div>
+                    
+                    <div class="input-group">
+                        <label class="label">HELOC Interest Rate %</label>
+                        <input type="number" id="helocRate" value="8.5" step="0.1" onchange="calculate()">
+                        <div style="font-size: 0.8rem; color: #667eea; margin-top: 0.3rem;">
+                            <a href="https://www.bankrate.com/loans/home-equity-loans/heloc-rates/" target="_blank" style="color: #667eea; text-decoration: none;">📊 HELOC Rates (BankRate)</a> | 
+                            <a href="https://www.nerdwallet.com/loans/heloc/" target="_blank" style="color: #667eea; text-decoration: none;">💳 HELOC Comparison</a>
+                        </div>
+                        <div style="font-size: 0.75rem; color: #666; margin-top: 0.3rem;">💡 Typical range: 7-9% | Call your bank/credit union for your specific rate</div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="label">Your Monthly Investment Capital</label>
+                        <input type="number" id="monthlyInvestment" value="1000" onchange="calculate()">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="label">GF + You Mortgage Payment</label>
+                        <input type="number" id="yourMortgagePayment" value="4000" onchange="calculate()">
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn" onclick="calculate()" style="margin-bottom: 1rem;">📊 Calculate & Generate Timeline</button>
+            
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                <button style="flex: 1; min-width: 150px; padding: 0.75rem; background: #10b981; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem;" onclick="exportSimulation()">📥 Export Scenario</button>
+                <button style="flex: 1; min-width: 150px; padding: 0.75rem; background: #3b82f6; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem;" onclick="importSimulation()">📤 Import Scenario</button>
+                <input type="file" id="simImportFile" accept=".json" style="display: none;" onchange="handleSimImport(event)">
+            </div>
+            
+            <!-- RESULTS SECTION -->
+            <div id="results" style="display: none;">
+                <!-- Key Metrics -->
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="result-label">Down Payment Needed</div>
+                        <div class="result-value" id="downPaymentAmount">$0</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Property B Cash Flow</div>
+                        <div class="result-value" id="cashFlowB">$0</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Total Debt Payoff Time</div>
+                        <div class="result-value" id="totalPayoffTime">0 mo</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Total Interest Cost</div>
+                        <div class="result-value" id="totalInterest">$0</div>
+                    </div>
+                </div>
+                
+                <!-- Warning if Property B doesn't cash flow -->
+                <div id="warningBox"></div>
+                
+                <!-- Timeline Chart -->
+                <div class="chart-container">
+                    <h3 style="margin-bottom: 1rem; color: #667eea;">📈 Debt Payoff Timeline & Portfolio Growth</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="timelineChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Detailed Timeline -->
+                <div class="timeline">
+                    <h3 style="margin-bottom: 1rem; color: #667eea;">📅 Detailed Payoff Schedule</h3>
+                    <div id="timelineDetails"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let timelineChart = null;
+        
+        function calculate() {
+            const mortgageA = parseFloat(document.getElementById('mortgageA').value) || 0;
+            const rentA = parseFloat(document.getElementById('rentA').value) || 0;
+            const improvementLoan = parseFloat(document.getElementById('improvementLoan').value) || 0;
+            const priceB = parseFloat(document.getElementById('priceB').value) || 0;
+            const downPaymentPercent = parseFloat(document.getElementById('downPaymentPercent').value) || 0;
+            const interestRate = parseFloat(document.getElementById('interestRate').value) || 0;
+            const loanTerm = parseFloat(document.getElementById('loanTerm').value) || 0;
+            const rentB = parseFloat(document.getElementById('rentB').value) || 0;
+            const opexPercent = parseFloat(document.getElementById('opexPercent').value) || 0;
+            const helocRate = parseFloat(document.getElementById('helocRate').value) || 0;
+            const monthlyInvestment = parseFloat(document.getElementById('monthlyInvestment').value) || 0;
+            const yourMortgagePayment = parseFloat(document.getElementById('yourMortgagePayment').value) || 0;
+            
+            // Calculate Property B details
+            const downPaymentAmount = priceB * (downPaymentPercent / 100);
+            const loanAmount = priceB - downPaymentAmount;
+            const monthlyRate = interestRate / 100 / 12;
+            const monthlyPayments = loanTerm * 12;
+            const monthlyMortgageB = monthlyRate === 0 ? loanAmount / monthlyPayments :
+                loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, monthlyPayments)) / (Math.pow(1 + monthlyRate, monthlyPayments) - 1);
+            
+            const monthlyOpex = rentB * (opexPercent / 100);
+            const cashFlowB = rentB - monthlyOpex - monthlyMortgageB;
+            
+            // Timeline simulation
+            let month = 0;
+            let improvementRemaining = improvementLoan;
+            let helocRemaining = downPaymentAmount;
+            let totalInterestPaid = 0;
+            let timelineData = [];
+            
+            const monthlyHelocRate = helocRate / 100 / 12;
+            
+            // Phase 1: Pay improvement loan
+            while (improvementRemaining > 0 && month < 120) {
+                month++;
+                const paymentToImprovement = Math.min(rentA, improvementRemaining);
+                improvementRemaining -= paymentToImprovement;
+                
+                timelineData.push({
+                    month: month,
+                    phase: 'Phase 1: Improvement Loan',
+                    improvementRemaining: Math.max(improvementRemaining, 0),
+                    helocRemaining: helocRemaining,
+                    propertyB: false,
+                    debtFree: false
+                });
+            }
+            
+            const phase1EndMonth = month;
+            
+            // Phase 2: Pay HELOC (Property B now active)
+            while (helocRemaining > 0 && month < 120) {
+                month++;
+                const helocInterest = helocRemaining * monthlyHelocRate;
+                const totalPaymentToHeloc = Math.min(rentA + monthlyInvestment + Math.max(cashFlowB, 0), helocRemaining + helocInterest);
+                helocRemaining = Math.max(helocRemaining + helocInterest - totalPaymentToHeloc, 0);
+                totalInterestPaid += helocInterest;
+                
+                timelineData.push({
+                    month: month,
+                    phase: 'Phase 2: HELOC + Property B Active',
+                    improvementRemaining: 0,
+                    helocRemaining: helocRemaining,
+                    propertyB: true,
+                    debtFree: false,
+                    helocInterest: helocInterest
+                });
+            }
+            
+            const phase2EndMonth = month;
+            
+            // Phase 3: Debt free
+            timelineData.push({
+                month: month,
+                phase: 'Phase 3: Debt Free!',
+                improvementRemaining: 0,
+                helocRemaining: 0,
+                propertyB: true,
+                debtFree: true
+            });
+            
+            // Display results
+            document.getElementById('downPaymentAmount').textContent = '$' + downPaymentAmount.toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('cashFlowB').textContent = '$' + Math.max(cashFlowB, 0).toLocaleString('en-US', {maximumFractionDigits: 0});
+            document.getElementById('totalPayoffTime').textContent = month + ' months (~' + (month / 12).toFixed(1) + ' years)';
+            document.getElementById('totalInterest').textContent = '$' + totalInterestPaid.toLocaleString('en-US', {maximumFractionDigits: 0});
+            
+            // Warning if Property B doesn't cash flow
+            let warningHtml = '';
+            if (cashFlowB < 100) {
+                warningHtml = `<div class="warning"><div class="warning-text">⚠️ Property B cash flow is low ($${cashFlowB.toLocaleString('en-US', {maximumFractionDigits: 0})}). HELOC payoff will depend mainly on Tenant A & your investment capital. Consider higher rent or lower purchase price.</div></div>`;
+            }
+            document.getElementById('warningBox').innerHTML = warningHtml;
+            
+            // Draw timeline chart
+            drawTimelineChart(timelineData);
+            
+            // Draw detailed timeline
+            drawDetailedTimeline(timelineData, phase1EndMonth, phase2EndMonth);
+            
+            document.getElementById('results').style.display = 'block';
+        }
+        
+        function drawTimelineChart(data) {
+            const months = data.map(d => d.month);
+            const improvementData = data.map(d => d.improvementRemaining);
+            const helocData = data.map(d => d.helocRemaining);
+            
+            const ctx = document.getElementById('timelineChart').getContext('2d');
+            
+            if (timelineChart) {
+                timelineChart.destroy();
+            }
+            
+            timelineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: [
+                        {
+                            label: 'Home Improvement Loan',
+                            data: improvementData,
+                            borderColor: '#f59e0b',
+                            backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0
+                        },
+                        {
+                            label: 'HELOC (Down Payment)',
+                            data: helocData,
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + (value / 1000).toFixed(0) + 'k';
+                                }
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Months'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function drawDetailedTimeline(data, phase1End, phase2End) {
+            const phase1Data = data.slice(0, phase1End);
+            const phase2Data = data.slice(phase1End, phase2End);
+            
+            let html = '';
+            
+            html += '<div class="timeline-item phase1">';
+            html += '<div class="timeline-header">🔨 PHASE 1: Home Improvement Loan Payoff</div>';
+            html += `<div class="timeline-detail">Duration: ~${phase1End} months | Tenant A payment 100% → Improvement Loan | You & GF continue $4K/mo mortgage</div>`;
+            html += '</div>';
+            
+            html += '<div class="timeline-item phase2">';
+            html += '<div class="timeline-header">💳 PHASE 2: HELOC + Property B Active</div>';
+            html += `<div class="timeline-detail">Duration: ~${phase2End - phase1End} months | Tenant A ($2.5K) + Your $1K + Property B cash flow → HELOC payoff | Property B generates cash flow</div>`;
+            html += '</div>';
+            
+            html += '<div class="timeline-item complete">';
+            html += '<div class="timeline-header">✅ PHASE 3: Debt Free!</div>';
+            html += `<div class="timeline-detail">Month ${phase2End} (~${(phase2End / 12).toFixed(1)} years) | All loans paid off | Both tenants' income now goes to you | Mortgage only</div>`;
+            html += '</div>';
+            
+            document.getElementById('timelineDetails').innerHTML = html;
+        }
+        
+        window.addEventListener('DOMContentLoaded', calculate);
+        
+        function exportSimulation() {
+            const scenario = {
+                exportDate: new Date().toLocaleString(),
+                mortgageA: document.getElementById('mortgageA').value,
+                rentA: document.getElementById('rentA').value,
+                improvementLoan: document.getElementById('improvementLoan').value,
+                priceB: document.getElementById('priceB').value,
+                downPaymentPercent: document.getElementById('downPaymentPercent').value,
+                interestRate: document.getElementById('interestRate').value,
+                loanTerm: document.getElementById('loanTerm').value,
+                rentB: document.getElementById('rentB').value,
+                opexPercent: document.getElementById('opexPercent').value,
+                helocRate: document.getElementById('helocRate').value,
+                monthlyInvestment: document.getElementById('monthlyInvestment').value,
+                yourMortgagePayment: document.getElementById('yourMortgagePayment').value
+            };
+            const jsonString = JSON.stringify(scenario, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `two_property_scenario_${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert('✅ Scenario exported! File: ' + a.download);
+        }
+        
+        function importSimulation() {
+            document.getElementById('simImportFile').click();
+        }
+        
+        function handleSimImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const scenario = JSON.parse(e.target.result);
+                    document.getElementById('mortgageA').value = scenario.mortgageA || '';
+                    document.getElementById('rentA').value = scenario.rentA || '';
+                    document.getElementById('improvementLoan').value = scenario.improvementLoan || '';
+                    document.getElementById('priceB').value = scenario.priceB || '';
+                    document.getElementById('downPaymentPercent').value = scenario.downPaymentPercent || '';
+                    document.getElementById('interestRate').value = scenario.interestRate || '';
+                    document.getElementById('loanTerm').value = scenario.loanTerm || '';
+                    document.getElementById('rentB').value = scenario.rentB || '';
+                    document.getElementById('opexPercent').value = scenario.opexPercent || '';
+                    document.getElementById('helocRate').value = scenario.helocRate || '';
+                    document.getElementById('monthlyInvestment').value = scenario.monthlyInvestment || '';
+                    document.getElementById('yourMortgagePayment').value = scenario.yourMortgagePayment || '';
+                    calculate();
+                    alert('✅ Scenario imported successfully!');
+                } catch (error) {
+                    alert('❌ Error reading file: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+    </script>
+</body>
+</html>

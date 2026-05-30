@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Contact Network</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; overflow-x: hidden; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #1e293b; padding: 0; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem 1rem; text-align: center; position: sticky; top: 0; z-index: 100; }
+        .header h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+        .header p { font-size: 0.85rem; opacity: 0.9; }
+        .container { max-width: 100%; padding: 1rem; margin: 0 auto; }
+        .stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem; }
+        .stat-card { background: white; padding: 0.75rem; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .stat-number { font-size: 1.5rem; font-weight: 700; color: #667eea; }
+        .stat-label { font-size: 0.75rem; color: #666; margin-top: 0.25rem; }
+        .btn-add { width: 100%; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; margin-bottom: 1.5rem; }
+        .search-filter { background: white; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .search-input { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; margin-bottom: 1rem; }
+        .filter-buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem; }
+        .filter-btn { padding: 0.5rem 1rem; border: 2px solid #e5e7eb; background: white; color: #1e293b; border-radius: 20px; font-weight: 600; cursor: pointer; font-size: 0.85rem; }
+        .filter-btn.active { background: #667eea; color: white; border-color: #667eea; }
+        .results-count { font-size: 0.85rem; color: #666; text-align: center; margin-bottom: 1rem; }
+        .export-import { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .btn-export { flex: 1; min-width: 150px; padding: 0.75rem; background: #10b981; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
+        .btn-import { flex: 1; min-width: 150px; padding: 0.75rem; background: #3b82f6; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
+        .contacts-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem; }
+        .contact-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-left: 4px solid #667eea; }
+        .card-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem; }
+        .card-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .card-title { font-size: 0.9rem; opacity: 0.95; }
+        .card-body { padding: 1rem; }
+        .contact-row { margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e5e7eb; }
+        .contact-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .row-label { font-size: 0.75rem; font-weight: 600; color: #999; text-transform: uppercase; margin-bottom: 0.25rem; }
+        .row-value { font-size: 0.95rem; color: #1e293b; word-break: break-word; line-height: 1.4; }
+        .row-value a { color: #667eea; text-decoration: none; }
+        .badge { display: inline-block; padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-right: 0.5rem; }
+        .badge-fiduciary { background: #fce7f3; color: #831843; }
+        .card-buttons { display: flex; gap: 0.5rem; padding: 0.75rem 1rem; background: #f9fafb; border-top: 1px solid #e5e7eb; }
+        .btn-edit { flex: 1; padding: 0.5rem; background: #3b82f6; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.85rem; }
+        .btn-delete { flex: 1; padding: 0.5rem; background: #ef4444; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.85rem; }
+        @media (min-width: 768px) { .contacts-grid { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>👥 Real Estate Contact Network</h1>
+        <p>Your Fiduciary Team - Keller Framework</p>
+    </div>
+    
+    <div class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalCount">6</div>
+                <div class="stat-label">Total Contacts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="fiduciaryCount">6</div>
+                <div class="stat-label">Fiduciaries</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="metCount">6</div>
+                <div class="stat-label">Met In Person</div>
+            </div>
+        </div>
+        
+        <button class="btn-add" onclick="openAddModal()">➕ Add New Contact</button>
+        
+        <div class="search-filter">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search by name or title..." onkeyup="applyFilters()">
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="setFilter('all')">All</button>
+                <button class="filter-btn" onclick="setFilter('Real Estate Agent')">Real Estate Agent</button>
+                <button class="filter-btn" onclick="setFilter('Mortgage Lender')">Mortgage Lender</button>
+                <button class="filter-btn" onclick="setFilter('Tax CPA')">Tax CPA</button>
+                <button class="filter-btn" onclick="setFilter('REAPS')">Met at REAPS</button>
+            </div>
+            <div class="results-count" id="resultsCount">Showing all 6 contacts</div>
+        </div>
+        
+        <div class="export-import">
+            <button class="btn-export" onclick="exportContacts()">📥 Export Contacts (JSON)</button>
+            <button class="btn-import" onclick="importContacts()">📤 Import Contacts (JSON)</button>
+            <input type="file" id="importFile" accept=".json" style="display: none;" onchange="handleFileImport(event)">
+        </div>
+        
+        <div class="contacts-grid" id="contactsGrid"></div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-title" id="modalTitle">Add New Contact</div>
+            <div class="form-group">
+                <label class="form-label">Name *</label>
+                <input type="text" class="form-input" id="formName" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Title *</label>
+                <input type="text" class="form-input" id="formTitle" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Company *</label>
+                <input type="text" class="form-input" id="formCompany" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Phone</label>
+                <input type="tel" class="form-input" id="formPhone">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" id="formEmail">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Notes</label>
+                <textarea class="form-input" id="formNotes" style="min-height: 60px;"></textarea>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-save" id="saveBtn" onclick="saveContact()">Save Contact</button>
+                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
+        .modal.active { display: flex; }
+        .modal-content { background: white; border-radius: 12px; padding: 1.5rem; max-width: 100%; width: 100%; max-height: 95vh; overflow-y: auto; }
+        .modal-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; color: #1e293b; }
+        .form-group { margin-bottom: 1rem; }
+        .form-label { display: block; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .form-input { width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; font-family: inherit; }
+        .form-input:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); }
+        .modal-buttons { display: flex; gap: 1rem; margin-top: 2rem; }
+        .btn-save { flex: 1; padding: 0.75rem; background: #10b981; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+        .btn-cancel { flex: 1; padding: 0.75rem; background: #e2e8f0; color: #1e293b; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+    </style>
+    
+    <script>
+        let allContacts = [
+            {
+                id: 1,
+                name: "Omar Fares",
+                title: "Real Estate Agent",
+                company: "Windermere Real Estate",
+                phone: "(360) 555-0123",
+                email: "omar.fares@windermere.com",
+                notes: "Connected at REAPS meeting. Helped sell current home on Camano Island."
+            },
+            {
+                id: 2,
+                name: "Dave Haley",
+                title: "Mortgage Lender",
+                company: "Fairway Mortgage",
+                phone: "(425) 471-6039",
+                email: "",
+                notes: "Lender for investment properties."
+            },
+            {
+                id: 3,
+                name: "Margo",
+                title: "Real Estate Agent",
+                company: "Fairway Mortgage",
+                phone: "(206) 759-2771",
+                email: "",
+                notes: "Real Estate Agent connected to Fairway Mortgage."
+            },
+            {
+                id: 4,
+                name: "John Haughney",
+                title: "Tax CPA",
+                company: "John Haughney CPA",
+                phone: "(425) 745-6900",
+                email: "johnh@haughney.com",
+                notes: "Tax CPA for real estate investments."
+            },
+            {
+                id: 5,
+                name: "Karlie Gragg Real Estate",
+                title: "Real Estate Agent",
+                company: "Papasan Real Estate Group",
+                phone: "(405) 351-3061",
+                email: "",
+                notes: "Agent at Papasan Real Estate Group. Colorado market specialist."
+            },
+            {
+                id: 6,
+                name: "Derek Real Estate",
+                title: "Real Estate Agent",
+                company: "Papasan Real Estate Group",
+                phone: "(720) 347-7733",
+                email: "",
+                notes: "Agent at Papasan Real Estate Group. Colorado market specialist."
+            }
+        ];
+        
+        let currentFilter = 'all';
+        let editingId = null;
+        
+        function renderContacts(filtered) {
+            const grid = document.getElementById('contactsGrid');
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div style="text-align: center; padding: 2rem; grid-column: 1/-1; color: #999;">No contacts match your search or filter</div>';
+                return;
+            }
+            
+            grid.innerHTML = filtered.map(c => `
+                <div class="contact-card">
+                    <div class="card-header">
+                        <div class="card-name">${c.name}</div>
+                        <div class="card-title">${c.title}</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="contact-row">
+                            <div class="row-label">Company</div>
+                            <div class="row-value">${c.company}</div>
+                        </div>
+                        ${c.phone ? `<div class="contact-row"><div class="row-label">Phone</div><div class="row-value"><a href="tel:${c.phone}">${c.phone}</a></div></div>` : ''}
+                        ${c.email ? `<div class="contact-row"><div class="row-label">Email</div><div class="row-value"><a href="mailto:${c.email}">${c.email}</a></div></div>` : ''}
+                        ${c.notes ? `<div class="contact-row"><div class="row-label">Notes</div><div class="row-value">${c.notes}</div></div>` : ''}
+                    </div>
+                    <div class="card-buttons">
+                        <button class="btn-edit" onclick="editContact(${c.id})">✏️ Edit</button>
+                        <button class="btn-delete" onclick="deleteContact(${c.id})">🗑️ Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function setFilter(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            applyFilters();
+        }
+        
+        function applyFilters() {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            let filtered = allContacts.filter(c => {
+                const matchSearch = !search || c.name.toLowerCase().includes(search) || c.title.toLowerCase().includes(search) || c.notes.toLowerCase().includes(search);
+                const matchFilter = currentFilter === 'all' || 
+                    (currentFilter === 'REAPS' ? c.notes.toLowerCase().includes('reaps') : c.title.includes(currentFilter));
+                return matchSearch && matchFilter;
+            });
+            
+            renderContacts(filtered);
+            document.getElementById('resultsCount').textContent = filtered.length === allContacts.length ? 
+                `Showing all ${allContacts.length} contacts` : `Showing ${filtered.length} of ${allContacts.length} contacts`;
+        }
+        
+        function openAddModal() {
+            editingId = null;
+            document.getElementById('modalTitle').textContent = 'Add New Contact';
+            document.getElementById('formName').value = '';
+            document.getElementById('formTitle').value = '';
+            document.getElementById('formCompany').value = '';
+            document.getElementById('formPhone').value = '';
+            document.getElementById('formEmail').value = '';
+            document.getElementById('formNotes').value = '';
+            document.getElementById('saveBtn').textContent = 'Save Contact';
+            document.getElementById('editModal').classList.add('active');
+        }
+        
+        function editContact(id) {
+            const contact = allContacts.find(c => c.id === id);
+            if (!contact) return;
+            
+            editingId = id;
+            document.getElementById('modalTitle').textContent = `Edit ${contact.name}`;
+            document.getElementById('formName').value = contact.name;
+            document.getElementById('formTitle').value = contact.title;
+            document.getElementById('formCompany').value = contact.company;
+            document.getElementById('formPhone').value = contact.phone;
+            document.getElementById('formEmail').value = contact.email;
+            document.getElementById('formNotes').value = contact.notes;
+            document.getElementById('saveBtn').textContent = 'Save Changes';
+            document.getElementById('editModal').classList.add('active');
+        }
+        
+        function saveContact() {
+            const name = document.getElementById('formName').value.trim();
+            const title = document.getElementById('formTitle').value.trim();
+            const company = document.getElementById('formCompany').value.trim();
+            
+            if (!name || !title || !company) {
+                alert('Please fill in Name, Title, and Company');
+                return;
+            }
+            
+            if (editingId) {
+                const contact = allContacts.find(c => c.id === editingId);
+                if (contact) {
+                    contact.name = name;
+                    contact.title = title;
+                    contact.company = company;
+                    contact.phone = document.getElementById('formPhone').value;
+                    contact.email = document.getElementById('formEmail').value;
+                    contact.notes = document.getElementById('formNotes').value;
+                    alert('✅ Contact updated!');
+                }
+            } else {
+                allContacts.push({
+                    id: Date.now(),
+                    name: name,
+                    title: title,
+                    company: company,
+                    phone: document.getElementById('formPhone').value,
+                    email: document.getElementById('formEmail').value,
+                    notes: document.getElementById('formNotes').value
+                });
+                alert('✅ Contact added!');
+            }
+            
+            document.getElementById('totalCount').textContent = allContacts.length;
+            closeModal();
+            applyFilters();
+        }
+        
+        function deleteContact(id) {
+            if (!confirm('Are you sure you want to delete this contact?')) return;
+            allContacts = allContacts.filter(c => c.id !== id);
+            document.getElementById('totalCount').textContent = allContacts.length;
+            applyFilters();
+        }
+        
+        function closeModal() {
+            document.getElementById('editModal').classList.remove('active');
+            editingId = null;
+        }
+        
+        function exportContacts() {
+            const dataToExport = {
+                exportDate: new Date().toLocaleString(),
+                contacts: allContacts
+            };
+            const jsonString = JSON.stringify(dataToExport, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `contact_network_backup_${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert('✅ Contacts exported! File: ' + a.download);
+        }
+        
+        function importContacts() {
+            document.getElementById('importFile').click();
+        }
+        
+        function handleFileImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (data.contacts && Array.isArray(data.contacts)) {
+                        allContacts = data.contacts;
+                        document.getElementById('totalCount').textContent = allContacts.length;
+                        applyFilters();
+                        alert('✅ Contacts imported successfully! (' + allContacts.length + ' contacts)');
+                    } else {
+                        alert('❌ Invalid file format. Please use a file exported from this tool.');
+                    }
+                } catch (error) {
+                    alert('❌ Error reading file: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+        
+        window.addEventListener('DOMContentLoaded', applyFilters);
+    </script>
+</body>
+</html>

@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="REAPS Vetter">
+<meta name="application-name" content="REAPS Vetter">
+<meta name="theme-color" content="#1a1a18">
+<title>REAPS Vetter</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTQwIDE0MCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnIiBjeD0iNTAlIiBjeT0iOTAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMGQyMjE4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzA4MGQwYSIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0id2FsbCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmQ3YTU1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzFlNTAzOCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icm9vZiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjM2Q5NDY4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzJkN2E1NSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9Imdsb3ciPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIyLjUiIHJlc3VsdD0iYmx1ciIvPgogICAgICA8ZmVNZXJnZT48ZmVNZXJnZU5vZGUgaW49ImJsdXIiLz48ZmVNZXJnZU5vZGUgaW49IlNvdXJjZUdyYXBoaWMiLz48L2ZlTWVyZ2U+CiAgICA8L2ZpbHRlcj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjE0MCIgaGVpZ2h0PSIxNDAiIGZpbGw9InVybCgjYmcpIi8+CiAgPGVsbGlwc2UgY3g9IjcwIiBjeT0iMTEyIiByeD0iOCIgcnk9IjMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRlY2Y4YSIgc3Ryb2tlLXdpZHRoPSIxLjIiIG9wYWNpdHk9IjEiLz4KICA8ZWxsaXBzZSBjeD0iNzAiIGN5PSIxMTIiIHJ4PSIyMCIgcnk9IjcuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGVjZjhhIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC42NSIvPgogIDxlbGxpcHNlIGN4PSI3MCIgY3k9IjExMiIgcng9IjM0IiByeT0iMTMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRlY2Y4YSIgc3Ryb2tlLXdpZHRoPSIxLjAiIG9wYWNpdHk9IjAuMzgiLz4KICA8ZWxsaXBzZSBjeD0iNzAiIGN5PSIxMTIiIHJ4PSI1MCIgcnk9IjE5IiBmaWxsPSJub25lIiBzdHJva2U9IiM0ZWNmOGEiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjE4Ii8+CiAgPGVsbGlwc2UgY3g9IjcwIiBjeT0iMTEyIiByeD0iNjYiIHJ5PSIyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGVjZjhhIiBzdHJva2Utd2lkdGg9IjAuNiIgb3BhY2l0eT0iMC4wOCIvPgogIDxyZWN0IHg9IjM2IiB5PSI2OCIgd2lkdGg9IjY4IiBoZWlnaHQ9IjUwIiByeD0iMiIgZmlsbD0idXJsKCN3YWxsKSIvPgogIDxwb2x5Z29uIHBvaW50cz0iNzAsMTQgMjQsNzAgMTE2LDcwIiBmaWxsPSJ1cmwoI3Jvb2YpIi8+CiAgPGxpbmUgeDE9IjcwIiB5MT0iMTgiIHgyPSI3MCIgeTI9IjE0IiBzdHJva2U9IiM3ZGViYTgiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNiIvPgogIDxyZWN0IHg9IjU4IiB5PSI4OCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjMwIiByeD0iMiIgZmlsbD0iIzA2MGUwOSIvPgogIDxjaXJjbGUgY3g9Ijc4IiBjeT0iMTA0IiByPSIyIiBmaWxsPSIjNGVjZjhhIiBvcGFjaXR5PSIwLjciLz4KICA8cmVjdCB4PSI0MCIgeT0iNzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxMiIgcng9IjEuNSIgZmlsbD0iIzFhNGEyZSIgc3Ryb2tlPSIjM2Q5NDY4IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8cmVjdCB4PSI4NCIgeT0iNzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxMiIgcng9IjEuNSIgZmlsbD0iIzFhNGEyZSIgc3Ryb2tlPSIjM2Q5NDY4IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8bGluZSB4MT0iMTgiIHkxPSIxMTgiIHgyPSIxMjIiIHkyPSIxMTgiIHN0cm9rZT0iIzRlY2Y4YSIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMjUiLz4KICA8Y2lyY2xlIGN4PSI3MCIgY3k9IjExMiIgcj0iNCIgZmlsbD0iIzVlZjBhMCIgZmlsdGVyPSJ1cmwoI2dsb3cpIi8+CiAgPGNpcmNsZSBjeD0iNzAiIGN5PSIxMTIiIHI9IjIiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg==">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTQwIDE0MCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnIiBjeD0iNTAlIiBjeT0iOTAlIiByPSI2MCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMGQyMjE4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzA4MGQwYSIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0id2FsbCIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmQ3YTU1Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzFlNTAzOCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icm9vZiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjM2Q5NDY4Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzJkN2E1NSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9Imdsb3ciPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIyLjUiIHJlc3VsdD0iYmx1ciIvPgogICAgICA8ZmVNZXJnZT48ZmVNZXJnZU5vZGUgaW49ImJsdXIiLz48ZmVNZXJnZU5vZGUgaW49IlNvdXJjZUdyYXBoaWMiLz48L2ZlTWVyZ2U+CiAgICA8L2ZpbHRlcj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjE0MCIgaGVpZ2h0PSIxNDAiIGZpbGw9InVybCgjYmcpIi8+CiAgPGVsbGlwc2UgY3g9IjcwIiBjeT0iMTEyIiByeD0iOCIgcnk9IjMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRlY2Y4YSIgc3Ryb2tlLXdpZHRoPSIxLjIiIG9wYWNpdHk9IjEiLz4KICA8ZWxsaXBzZSBjeD0iNzAiIGN5PSIxMTIiIHJ4PSIyMCIgcnk9IjcuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGVjZjhhIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC42NSIvPgogIDxlbGxpcHNlIGN4PSI3MCIgY3k9IjExMiIgcng9IjM0IiByeT0iMTMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzRlY2Y4YSIgc3Ryb2tlLXdpZHRoPSIxLjAiIG9wYWNpdHk9IjAuMzgiLz4KICA8ZWxsaXBzZSBjeD0iNzAiIGN5PSIxMTIiIHJ4PSI1MCIgcnk9IjE5IiBmaWxsPSJub25lIiBzdHJva2U9IiM0ZWNmOGEiIHN0cm9rZS13aWR0aD0iMC44IiBvcGFjaXR5PSIwLjE4Ii8+CiAgPGVsbGlwc2UgY3g9IjcwIiBjeT0iMTEyIiByeD0iNjYiIHJ5PSIyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGVjZjhhIiBzdHJva2Utd2lkdGg9IjAuNiIgb3BhY2l0eT0iMC4wOCIvPgogIDxyZWN0IHg9IjM2IiB5PSI2OCIgd2lkdGg9IjY4IiBoZWlnaHQ9IjUwIiByeD0iMiIgZmlsbD0idXJsKCN3YWxsKSIvPgogIDxwb2x5Z29uIHBvaW50cz0iNzAsMTQgMjQsNzAgMTE2LDcwIiBmaWxsPSJ1cmwoI3Jvb2YpIi8+CiAgPGxpbmUgeDE9IjcwIiB5MT0iMTgiIHgyPSI3MCIgeTI9IjE0IiBzdHJva2U9IiM3ZGViYTgiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNiIvPgogIDxyZWN0IHg9IjU4IiB5PSI4OCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjMwIiByeD0iMiIgZmlsbD0iIzA2MGUwOSIvPgogIDxjaXJjbGUgY3g9Ijc4IiBjeT0iMTA0IiByPSIyIiBmaWxsPSIjNGVjZjhhIiBvcGFjaXR5PSIwLjciLz4KICA8cmVjdCB4PSI0MCIgeT0iNzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxMiIgcng9IjEuNSIgZmlsbD0iIzFhNGEyZSIgc3Ryb2tlPSIjM2Q5NDY4IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8cmVjdCB4PSI4NCIgeT0iNzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxMiIgcng9IjEuNSIgZmlsbD0iIzFhNGEyZSIgc3Ryb2tlPSIjM2Q5NDY4IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8bGluZSB4MT0iMTgiIHkxPSIxMTgiIHgyPSIxMjIiIHkyPSIxMTgiIHN0cm9rZT0iIzRlY2Y4YSIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMjUiLz4KICA8Y2lyY2xlIGN4PSI3MCIgY3k9IjExMiIgcj0iNCIgZmlsbD0iIzVlZjBhMCIgZmlsdGVyPSJ1cmwoI2dsb3cpIi8+CiAgPGNpcmNsZSBjeD0iNzAiIGN5PSIxMTIiIHI9IjIiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg==">
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiUkVBUFMgVmV0dGVyIiwic2hvcnRfbmFtZSI6IlJFQVBTIFZldHRlciIsImRlc2NyaXB0aW9uIjoiVmV0cyBSRUFQUyBldmVudHMgYWdhaW5zdCB5b3VyIGludmVzdG9yIGNyaXRlcmlhIiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMwODBkMGEiLCJ0aGVtZV9jb2xvciI6IiMxYTFhMTgiLCJvcmllbnRhdGlvbiI6InBvcnRyYWl0LXByaW1hcnkiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCMmFXVjNRbTk0UFNJd0lEQWdNVFF3SURFME1DSWdkMmxrZEdnOUlqVXhNaUlnYUdWcFoyaDBQU0kxTVRJaUlIaHRiRzV6UFNKb2RIUndPaTh2ZDNkM0xuY3pMbTl5Wnk4eU1EQXdMM04yWnlJK0NpQWdQR1JsWm5NK0NpQWdJQ0E4Y21Ga2FXRnNSM0poWkdsbGJuUWdhV1E5SW1KbklpQmplRDBpTlRBbElpQmplVDBpT1RBbElpQnlQU0kyTUNVaVBnb2dJQ0FnSUNBOGMzUnZjQ0J2Wm1aelpYUTlJakFsSWlCemRHOXdMV052Ykc5eVBTSWpNR1F5TWpFNElpOCtDaUFnSUNBZ0lEeHpkRzl3SUc5bVpuTmxkRDBpTVRBd0pTSWdjM1J2Y0MxamIyeHZjajBpSXpBNE1HUXdZU0l2UGdvZ0lDQWdQQzl5WVdScFlXeEhjbUZrYVdWdWRENEtJQ0FnSUR4c2FXNWxZWEpIY21Ga2FXVnVkQ0JwWkQwaWQyRnNiQ0lnZURFOUlqQWlJSGt4UFNJd0lpQjRNajBpTUNJZ2VUSTlJakVpUGdvZ0lDQWdJQ0E4YzNSdmNDQnZabVp6WlhROUlqQWxJaUJ6ZEc5d0xXTnZiRzl5UFNJak1tUTNZVFUxSWk4K0NpQWdJQ0FnSUR4emRHOXdJRzltWm5ObGREMGlNVEF3SlNJZ2MzUnZjQzFqYjJ4dmNqMGlJekZsTlRBek9DSXZQZ29nSUNBZ1BDOXNhVzVsWVhKSGNtRmthV1Z1ZEQ0S0lDQWdJRHhzYVc1bFlYSkhjbUZrYVdWdWRDQnBaRDBpY205dlppSWdlREU5SWpBaUlIa3hQU0l3SWlCNE1qMGlNQ0lnZVRJOUlqRWlQZ29nSUNBZ0lDQThjM1J2Y0NCdlptWnpaWFE5SWpBbElpQnpkRzl3TFdOdmJHOXlQU0lqTTJRNU5EWTRJaTgrQ2lBZ0lDQWdJRHh6ZEc5d0lHOW1abk5sZEQwaU1UQXdKU0lnYzNSdmNDMWpiMnh2Y2owaUl6SmtOMkUxTlNJdlBnb2dJQ0FnUEM5c2FXNWxZWEpIY21Ga2FXVnVkRDRLSUNBZ0lEeG1hV3gwWlhJZ2FXUTlJbWRzYjNjaVBnb2dJQ0FnSUNBOFptVkhZWFZ6YzJsaGJrSnNkWElnYzNSa1JHVjJhV0YwYVc5dVBTSXlMalVpSUhKbGMzVnNkRDBpWW14MWNpSXZQZ29nSUNBZ0lDQThabVZOWlhKblpUNDhabVZOWlhKblpVNXZaR1VnYVc0OUltSnNkWElpTHo0OFptVk5aWEpuWlU1dlpHVWdhVzQ5SWxOdmRYSmpaVWR5WVhCb2FXTWlMejQ4TDJabFRXVnlaMlUrQ2lBZ0lDQThMMlpwYkhSbGNqNEtJQ0E4TDJSbFpuTStDaUFnUEhKbFkzUWdkMmxrZEdnOUlqRTBNQ0lnYUdWcFoyaDBQU0l4TkRBaUlHWnBiR3c5SW5WeWJDZ2pZbWNwSWk4K0NpQWdQR1ZzYkdsd2MyVWdZM2c5SWpjd0lpQmplVDBpTVRFeUlpQnllRDBpT0NJZ2NuazlJak1pSUdacGJHdzlJbTV2Ym1VaUlITjBjbTlyWlQwaUl6UmxZMlk0WVNJZ2MzUnliMnRsTFhkcFpIUm9QU0l4TGpJaUlHOXdZV05wZEhrOUlqRWlMejRLSUNBOFpXeHNhWEJ6WlNCamVEMGlOekFpSUdONVBTSXhNVElpSUhKNFBTSXlNQ0lnY25rOUlqY3VOU0lnWm1sc2JEMGlibTl1WlNJZ2MzUnliMnRsUFNJak5HVmpaamhoSWlCemRISnZhMlV0ZDJsa2RHZzlJakV1TWlJZ2IzQmhZMmwwZVQwaU1DNDJOU0l2UGdvZ0lEeGxiR3hwY0hObElHTjRQU0kzTUNJZ1kzazlJakV4TWlJZ2NuZzlJak0wSWlCeWVUMGlNVE1pSUdacGJHdzlJbTV2Ym1VaUlITjBjbTlyWlQwaUl6UmxZMlk0WVNJZ2MzUnliMnRsTFhkcFpIUm9QU0l4TGpBaUlHOXdZV05wZEhrOUlqQXVNemdpTHo0S0lDQThaV3hzYVhCelpTQmplRDBpTnpBaUlHTjVQU0l4TVRJaUlISjRQU0kxTUNJZ2NuazlJakU1SWlCbWFXeHNQU0p1YjI1bElpQnpkSEp2YTJVOUlpTTBaV05tT0dFaUlITjBjbTlyWlMxM2FXUjBhRDBpTUM0NElpQnZjR0ZqYVhSNVBTSXdMakU0SWk4K0NpQWdQR1ZzYkdsd2MyVWdZM2c5SWpjd0lpQmplVDBpTVRFeUlpQnllRDBpTmpZaUlISjVQU0l5TlNJZ1ptbHNiRDBpYm05dVpTSWdjM1J5YjJ0bFBTSWpOR1ZqWmpoaElpQnpkSEp2YTJVdGQybGtkR2c5SWpBdU5pSWdiM0JoWTJsMGVUMGlNQzR3T0NJdlBnb2dJRHh5WldOMElIZzlJak0ySWlCNVBTSTJPQ0lnZDJsa2RHZzlJalk0SWlCb1pXbG5hSFE5SWpVd0lpQnllRDBpTWlJZ1ptbHNiRDBpZFhKc0tDTjNZV3hzS1NJdlBnb2dJRHh3YjJ4NVoyOXVJSEJ2YVc1MGN6MGlOekFzTVRRZ01qUXNOekFnTVRFMkxEY3dJaUJtYVd4c1BTSjFjbXdvSTNKdmIyWXBJaTgrQ2lBZ1BHeHBibVVnZURFOUlqY3dJaUI1TVQwaU1UZ2lJSGd5UFNJM01DSWdlVEk5SWpFMElpQnpkSEp2YTJVOUlpTTNaR1ZpWVRnaUlITjBjbTlyWlMxM2FXUjBhRDBpTVM0MUlpQnpkSEp2YTJVdGJHbHVaV05oY0QwaWNtOTFibVFpSUc5d1lXTnBkSGs5SWpBdU5pSXZQZ29nSUR4eVpXTjBJSGc5SWpVNElpQjVQU0k0T0NJZ2QybGtkR2c5SWpJMElpQm9aV2xuYUhROUlqTXdJaUJ5ZUQwaU1pSWdabWxzYkQwaUl6QTJNR1V3T1NJdlBnb2dJRHhqYVhKamJHVWdZM2c5SWpjNElpQmplVDBpTVRBMElpQnlQU0l5SWlCbWFXeHNQU0lqTkdWalpqaGhJaUJ2Y0dGamFYUjVQU0l3TGpjaUx6NEtJQ0E4Y21WamRDQjRQU0kwTUNJZ2VUMGlOellpSUhkcFpIUm9QU0l4TmlJZ2FHVnBaMmgwUFNJeE1pSWdjbmc5SWpFdU5TSWdabWxzYkQwaUl6RmhOR0V5WlNJZ2MzUnliMnRsUFNJak0yUTVORFk0SWlCemRISnZhMlV0ZDJsa2RHZzlJakVpTHo0S0lDQThjbVZqZENCNFBTSTROQ0lnZVQwaU56WWlJSGRwWkhSb1BTSXhOaUlnYUdWcFoyaDBQU0l4TWlJZ2NuZzlJakV1TlNJZ1ptbHNiRDBpSXpGaE5HRXlaU0lnYzNSeWIydGxQU0lqTTJRNU5EWTRJaUJ6ZEhKdmEyVXRkMmxrZEdnOUlqRWlMejRLSUNBOGJHbHVaU0I0TVQwaU1UZ2lJSGt4UFNJeE1UZ2lJSGd5UFNJeE1qSWlJSGt5UFNJeE1UZ2lJSE4wY205clpUMGlJelJsWTJZNFlTSWdjM1J5YjJ0bExYZHBaSFJvUFNJd0xqVWlJRzl3WVdOcGRIazlJakF1TWpVaUx6NEtJQ0E4WTJseVkyeGxJR040UFNJM01DSWdZM2s5SWpFeE1pSWdjajBpTkNJZ1ptbHNiRDBpSXpWbFpqQmhNQ0lnWm1sc2RHVnlQU0oxY213b0kyZHNiM2NwSWk4K0NpQWdQR05wY21Oc1pTQmplRDBpTnpBaUlHTjVQU0l4TVRJaUlISTlJaklpSUdacGJHdzlJbmRvYVhSbElpOCtDand2YzNablBnPT0iLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCIsInB1cnBvc2UiOiJhbnkgbWFza2FibGUifV19">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#f7f5f0; --surface:#fff; --border:#e0dbd0; --border2:#ccc8bc;
+    --text:#1a1a18; --muted:#888880;
+    --accent:#2d6a4f; --accent-light:#e8f4ef;
+    --warn:#b85c00; --warn-light:#fdf0e6;
+    --danger:#9b2335; --danger-light:#fdeef0;
+    --mono:'IBM Plex Mono',monospace; --sans:'IBM Plex Sans',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;min-height:100dvh;overscroll-behavior:none;}
+
+  header{background:var(--text);color:var(--bg);padding:16px 24px;padding-top:calc(16px + env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+  .logo{font-family:var(--mono);font-size:13px;letter-spacing:.08em;}
+  .logo span{color:#7dba9f;}
+  .status-pill{font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:20px;background:rgba(255,255,255,.1);letter-spacing:.06em;display:flex;align-items:center;gap:6px;}
+  .dot{width:6px;height:6px;border-radius:50%;background:#7dba9f;}
+
+  main{max-width:760px;margin:0 auto;padding:28px 16px calc(80px + env(safe-area-inset-bottom));}
+  .page-title{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:6px;}
+  h1{font-size:26px;font-weight:300;letter-spacing:-.02em;margin-bottom:8px;}
+  .subtitle{font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:24px;max-width:540px;}
+
+  .criteria-strip{background:var(--accent-light);border:1px solid #b8d8cb;border-radius:8px;padding:14px 18px;margin-bottom:20px;font-size:12.5px;line-height:1.7;color:#1a3d2e;}
+  .criteria-strip strong{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px;}
+  .criteria-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+  .ctag{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:4px;letter-spacing:.06em;}
+  .ctag.want{background:var(--accent);color:#fff;}
+  .ctag.skip{background:var(--danger);color:#fff;}
+
+  .sources-row{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--muted);}
+  .source-tag{padding:4px 10px;border:1px solid var(--border2);border-radius:4px;background:#fff;display:flex;align-items:center;gap:5px;}
+  .dot2{width:5px;height:5px;border-radius:50%;}
+  .dot2.green{background:var(--accent);}
+  .dot2.blue{background:#4a7fcb;}
+
+  .scan-btn{width:100%;padding:14px;background:var(--text);color:var(--bg);border:none;border-radius:8px;font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.05em;cursor:pointer;transition:opacity .2s;margin-bottom:6px;display:flex;align-items:center;justify-content:center;gap:10px;}
+  .scan-btn:hover{opacity:.85;}
+  .scan-btn:disabled{opacity:.5;cursor:not-allowed;}
+  .source-note{font-family:var(--mono);font-size:10px;color:var(--muted);text-align:center;margin-bottom:28px;letter-spacing:.04em;}
+  .source-note a{color:var(--accent);text-decoration:none;}
+
+  .loading{display:none;text-align:center;padding:40px;color:var(--muted);font-family:var(--mono);font-size:12px;letter-spacing:.08em;}
+  .spinner{width:24px;height:24px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .loading-steps{margin-top:12px;}
+  .loading-step{padding:3px 0;font-size:11px;opacity:.35;transition:opacity .3s;}
+  .loading-step.active{opacity:1;color:var(--accent);}
+  .loading-step.done{opacity:.55;}
+  .loading-step.done::before{content:"✓ ";}
+
+  .error-box{display:none;background:var(--danger-light);border:1px solid #f0b8c0;border-radius:8px;padding:16px 20px;font-size:13px;color:var(--danger);margin-bottom:20px;font-family:var(--mono);line-height:1.5;}
+
+  #results{display:none;}
+  .results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+  .results-title{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+  .results-count{font-family:var(--mono);font-size:11px;color:var(--accent);}
+
+  .sbadge{font-family:var(--mono);font-size:9px;padding:2px 6px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;margin-right:5px;}
+  .sbadge.meetup{background:#e8eef8;color:#4a7fcb;border:1px solid #c0cce0;}
+  .sbadge.reaps{background:#f0ede8;color:#7a6a50;border:1px solid #d8d0c0;}
+  .sbadge.both{background:#f0f8f0;color:var(--accent);border:1px solid #b8d8cb;}
+
+  .event-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:18px;overflow:hidden;transition:box-shadow .2s;}
+  .event-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.08);}
+
+  .card-top{padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;gap:14px;align-items:flex-start;}
+  .verdict-badge{flex-shrink:0;width:54px;height:54px;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;gap:2px;}
+  .verdict-badge .vicon{font-size:20px;}
+  .verdict-badge.go{background:var(--accent-light);color:var(--accent);border:1px solid #b8d8cb;}
+  .verdict-badge.skip{background:var(--danger-light);color:var(--danger);border:1px solid #f0b8c0;}
+  .verdict-badge.maybe{background:var(--warn-light);color:var(--warn);border:1px solid #f0cfa8;}
+
+  .card-info{flex:1;min-width:0;}
+  .event-title{font-size:15px;font-weight:500;line-height:1.4;margin-bottom:5px;}
+  .event-meta{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.04em;display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px;}
+  .event-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
+  .etag{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;}
+  .etag.green{background:var(--accent-light);color:var(--accent);}
+  .etag.red{background:var(--danger-light);color:var(--danger);}
+  .etag.orange{background:var(--warn-light);color:var(--warn);}
+
+  .card-body{padding:14px 20px;font-size:13px;line-height:1.65;color:#333;border-bottom:1px solid var(--border);}
+  .section-label{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+
+  /* SPEAKER ACCORDION */
+  .speaker-row{border-top:1px solid var(--border);}
+  .speaker-toggle{width:100%;padding:12px 20px;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:10px;font-family:var(--sans);font-size:13px;color:var(--text);text-align:left;transition:background .15s;}
+  .speaker-toggle:hover{background:#f9f8f6;}
+  .speaker-avatar{width:32px;height:32px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--muted);flex-shrink:0;font-family:var(--mono);}
+  .spk-name{font-weight:500;font-size:13px;}
+  .spk-role{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.04em;}
+  .toggle-arrow{font-size:11px;color:var(--muted);transition:transform .2s;margin-left:auto;}
+  .speaker-toggle.open .toggle-arrow{transform:rotate(180deg);}
+
+  .speaker-bio-panel{display:none;padding:14px 20px 16px 62px;font-size:12.5px;line-height:1.75;color:#444;background:#fafaf8;border-top:1px solid var(--border);}
+  .speaker-bio-panel.open{display:block;}
+  .bio-spinner{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--muted);}
+  .bspinner{width:12px;height:12px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;}
+  .speaker-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+  .speaker-link{font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:4px;border:1px solid var(--border2);color:var(--text);text-decoration:none;transition:all .15s;}
+  .speaker-link:hover{border-color:var(--accent);color:var(--accent);}
+  .rf-note{color:var(--danger);font-size:12px;margin-top:8px;}
+
+  /* ACTIONS */
+  .card-actions{padding:12px 20px 14px;display:flex;flex-direction:column;gap:8px;background:#fbfaf8;}
+  .action-btn{font-family:var(--mono);font-size:11px;padding:10px 14px;border-radius:6px;border:1px solid var(--border2);background:#fff;color:var(--text);cursor:pointer;letter-spacing:.04em;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s;}
+  .action-btn:hover{border-color:var(--accent);color:var(--accent);}
+  .action-btn.cal{background:var(--accent);color:#fff;border-color:var(--accent);width:100%;padding:12px 14px;font-size:12px;}
+  .action-btn.cal:hover{opacity:.85;color:#fff;}
+  .source-links-row{display:flex;gap:8px;}
+  .source-links-row .action-btn{flex:1;}
+  .cost-chip{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center;padding-top:2px;}
+
+  .manual-section{margin-top:32px;padding-top:24px;border-top:1px solid var(--border);}
+  .manual-label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+  .manual-row{display:flex;gap:8px;}
+  .manual-input{flex:1;padding:10px 14px;border:1px solid var(--border2);border-radius:8px;font-family:var(--sans);font-size:13.5px;background:#fff;color:var(--text);outline:none;}
+  .manual-input:focus{border-color:var(--accent);}
+  .manual-btn{padding:10px 18px;background:var(--text);color:var(--bg);border:none;border-radius:8px;font-family:var(--mono);font-size:12px;cursor:pointer;white-space:nowrap;}
+  .manual-btn:hover{opacity:.85;}
+
+  .empty-state{display:none;text-align:center;padding:40px;color:var(--muted);font-size:13.5px;}
+  .empty-state .big{font-size:32px;margin-bottom:10px;}
+
+  @media(max-width:500px){
+    h1{font-size:22px;}
+    .card-top{flex-direction:column;gap:10px;}
+    .verdict-badge{width:100%;height:auto;flex-direction:row;padding:8px 12px;gap:8px;font-size:11px;}
+    .vicon{font-size:16px;}
+    .speaker-bio-panel{padding-left:20px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">REAPS <span>Event Vetter</span></div>
+  <div class="status-pill"><div class="dot"></div>Claude · Active</div>
+</header>
+
+<main>
+  <div class="page-title">Agent · Real Estate</div>
+  <h1>Events Worth Your Time</h1>
+  <p class="subtitle">Scans both REAPS sources, cross-references them, independently researches speakers, and flags events that may be misrepresented — so you know what you're actually walking into.</p>
+
+  <div class="criteria-strip">
+    <strong>Your Active Filter Criteria</strong>
+    Beginner buy-and-hold investor, Puget Sound area. Goals: deal analysis, landlording, ADU conversions, meeting local investors and contractors. Red flag: events sold as investor education that are actually sales pitches or aimed at lenders/financers.
+    <div class="criteria-tags">
+      <span class="ctag want">✓ Buy &amp; Hold</span>
+      <span class="ctag want">✓ ADU / Landlording</span>
+      <span class="ctag want">✓ Networking</span>
+      <span class="ctag want">✓ Contractors</span>
+      <span class="ctag want">✓ Beginner Learning</span>
+      <span class="ctag skip">✗ Coaching Upsells</span>
+      <span class="ctag skip">✗ Sales Pitch Events</span>
+      <span class="ctag skip">✗ Lender / Financer Only</span>
+      <span class="ctag skip">✗ Targets Desperate Sellers</span>
+    </div>
+  </div>
+
+  <div class="sources-row">
+    Scanning:
+    <div class="source-tag"><div class="dot2 green"></div>reapsweb.com</div>
+    <div class="source-tag"><div class="dot2 blue"></div>meetup.com/nwreig</div>
+    <div class="source-tag"><div class="dot2 green"></div>Speaker research</div>
+  </div>
+
+  <button class="scan-btn" id="scanBtn" onclick="runScan()">
+    <span id="btnIcon">⟳</span>
+    <span id="btnText">Scan All REAPS Sources Now</span>
+  </button>
+  <div class="source-note">
+    <a href="https://www.reapsweb.com/Calendar.aspx" target="_blank">reapsweb.com</a> &amp;
+    <a href="https://www.meetup.com/nwreig/events/" target="_blank">meetup.com/nwreig</a> · Analyzed by Claude
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <div id="loadingMsg">Starting scan…</div>
+    <div class="loading-steps">
+      <div class="loading-step" id="s1">Fetching upcoming events from both sources</div>
+      <div class="loading-step" id="s2">Cross-referencing event lists</div>
+      <div class="loading-step" id="s3">Vetting against your criteria</div>
+      <div class="loading-step" id="s4">Checking speaker backgrounds</div>
+      <div class="loading-step" id="s5">Building results</div>
+    </div>
+  </div>
+
+  <div class="error-box" id="errorBox"></div>
+
+  <div id="results">
+    <div class="results-header">
+      <div class="results-title">Upcoming Events</div>
+      <div class="results-count" id="resultsCount"></div>
+    </div>
+    <div id="coverageBanner" style="display:none;background:#f0f8f0;border:1px solid #b8d8cb;border-radius:8px;padding:11px 16px;margin-bottom:16px;font-family:var(--mono);font-size:11px;color:#2d6a4f;line-height:1.5;letter-spacing:.03em;"></div>
+    <div id="eventCards"></div>
+    <div class="empty-state" id="emptyState">
+      <div class="big">📭</div>
+      No upcoming events found. Check back soon or paste one manually below.
+    </div>
+  </div>
+
+  <div class="manual-section">
+    <div class="manual-label">Or paste an event description or URL to vet it manually</div>
+    <div class="manual-row">
+      <input class="manual-input" id="manualInput" type="text" placeholder="Paste event title, description, or URL…" />
+      <button class="manual-btn" onclick="analyzeManual()">Vet It</button>
+    </div>
+  </div>
+</main>
+
+<script>
+const MODEL = "claude-sonnet-4-20250514";
+
+// ── Kevin's criteria injected into every prompt ──────────────────────────
+const KEVIN_PROFILE = `Kevin is a beginner buy-and-hold real estate investor in the Puget Sound area of Washington State.
+His goals: learn deal analysis, landlording basics, ADU conversions, network with local investors, meet contractors.
+He is NOT interested in: fix & flip coaching programs, lender/financer events, scripted "systems" requiring upfront fees, or wholesaling.
+IMPORTANT: Kevin once attended a REAPS event ("Creative Finance & Consistent Money Making") that was advertised as investor education but turned out to be a paid coaching pitch for financers/lenders ("3 Paydays System"). He lost trust. The agent must independently research speakers to check whether they primarily teach/invest vs. sell coaching programs — because event descriptions on REAPS can be misleading.`;
+
+// ── PHASE 1: Get event list as simple short JSON ─────────────────────────
+const PHASE1_SYSTEM = `${KEVIN_PROFILE}
+
+You search for upcoming REAPS events from both reapsweb.com and meetup.com/nwreig and return a JSON array.
+
+CRITICAL JSON RULES:
+- Return ONLY a raw JSON array. No markdown, no code fences, no explanation.
+- Keep ALL string values SHORT — under 80 words each.
+- No newlines inside string values. Use a space instead.
+- No unescaped quotes inside string values.
+- For the "summary" field: 2-3 sentences maximum, no line breaks, no special characters.
+
+Each event object must follow this exact schema:
+{
+  "title": "short event title",
+  "date": "e.g. June 1 2026",
+  "time": "e.g. 6:00 PM - 8:30 PM",
+  "location": "venue name and city",
+  "cost": "e.g. Free for members / $33 guests",
+  "reapsUrl": "full URL or null",
+  "meetupUrl": "full URL or null",
+  "source": "reaps or meetup or both",
+  "verdict": "GO or SKIP or MAYBE",
+  "emoji": "✓ or ✗ or ?",
+  "summary": "Short plain text assessment 2-3 sentences max no special chars",
+  "relevant": ["tag1","tag2"],
+  "redFlags": ["flag1","flag2"],
+  "speakers": ["Speaker Name 1","Speaker Name 2"]
+}
+
+speakers field: just names as strings, no other data. Bios will be fetched separately.
+If no speaker named, use empty array [].`;
+
+// ── PHASE 2: Speaker bio as plain text (no JSON) ─────────────────────────
+function buildBioPrompt(speakerName, eventTitle, eventContext) {
+  return {
+    system: `${KEVIN_PROFILE}
+
+Research this speaker and write a short profile for Kevin. Format as plain readable paragraphs — NOT JSON, NOT markdown headers or bullets.
+
+Structure your response as 3 short paragraphs:
+Paragraph 1: Who they are, their background, years of experience, what they actually do for a living (investor, agent, coach, etc.)
+Paragraph 2: Their teaching or speaking style, what topics they typically cover, and whether their content is practical education or primarily a gateway to selling a program.
+Paragraph 3: Your honest assessment for Kevin — does this speaker's background align with Kevin's buy-and-hold goals, and are there any red flags to be aware of?
+
+End with a line starting with "LINKS:" followed by any real URLs you found (website, LinkedIn). If none found, write "LINKS: none found"
+
+Keep the whole response under 250 words. Be honest. If you don't have reliable info, say so plainly.`,
+    userMsg: `Research this speaker: "${speakerName}" who is speaking at a REAPS event called "${eventTitle}". ${eventContext ? 'Event context: ' + eventContext : ''}`
+  };
+}
+
+// ── Robust JSON parser (4-attempt fallback) ───────────────────────────────
+function parseEventJSON(rawText) {
+  let clean = rawText
+    .replace(/^```json\s*/i, '')
+    .replace(/^```\s*/i, '')
+    .replace(/```\s*$/i, '')
+    .trim();
+
+  const start = clean.indexOf('[');
+  const end = clean.lastIndexOf(']');
+  if (start === -1 || end === -1) throw new Error("No JSON array found in response");
+  clean = clean.slice(start, end + 1);
+
+  // Attempt 1: direct parse
+  try { return JSON.parse(clean); } catch(e1) {}
+
+  // Attempt 2: sanitize newlines inside strings
+  try {
+    const sanitized = clean.replace(/"(?:[^"\\]|\\.)*"/g, m =>
+      m.replace(/\n/g,' ').replace(/\r/g,' ').replace(/\t/g,' ')
+    );
+    return JSON.parse(sanitized);
+  } catch(e2) {}
+
+  // Attempt 3 + 4: object-by-object extraction with field-level fallback
+  const objects = [];
+  let depth = 0, objStart = -1;
+  for (let i = 0; i < clean.length; i++) {
+    if (clean[i] === '{') { if (depth === 0) objStart = i; depth++; }
+    else if (clean[i] === '}') {
+      depth--;
+      if (depth === 0 && objStart !== -1) {
+        const chunk = clean.slice(objStart, i + 1)
+          .replace(/\n/g,' ').replace(/\r/g,' ').replace(/\t/g,' ');
+        // Attempt 3: parse sanitized chunk
+        try { objects.push(JSON.parse(chunk)); }
+        catch(ex) {
+          // Attempt 4: field-by-field regex extraction
+          const pick = (pat) => { const m = chunk.match(pat); return m ? m[1] : ''; };
+          const title = pick(/\"title\"\s*:\s*\"([^\"]*)\"/);
+          if (title) {
+            objects.push({
+              title,
+              date:     pick(/\"date\"\s*:\s*\"([^\"]*)\"/),
+              time:     pick(/\"time\"\s*:\s*\"([^\"]*)\"/),
+              location: pick(/\"location\"\s*:\s*\"([^\"]*)\"/),
+              cost:     pick(/\"cost\"\s*:\s*\"([^\"]*)\"/),
+              verdict:  pick(/\"verdict\"\s*:\s*\"(GO|SKIP|MAYBE)\"/) || 'MAYBE',
+              emoji:    pick(/\"emoji\"\s*:\s*\"([^\"]{1,2})\"/) || '?',
+              source:   pick(/\"source\"\s*:\s*\"([^\"]*)\"/),
+              summary:  pick(/\"summary\"\s*:\s*\"([^\"]{0,300})/),
+              reapsUrl:  null, meetupUrl: null,
+              speakers: [], relevant: [], redFlags: []
+            });
+          }
+        }
+        objStart = -1;
+      }
+    }
+  }
+  if (objects.length > 0) return objects;
+
+  throw new Error("Could not parse event data. Please try again.");
+}
+
+// ── Step progress UI ──────────────────────────────────────────────────────
+function setStep(n) {
+  for (let i = 1; i <= 5; i++) {
+    const el = document.getElementById('s' + i);
+    if (!el) continue;
+    el.className = 'loading-step' + (i < n ? ' done' : i === n ? ' active' : '');
+  }
+}
+
+function showLoading(msg) {
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('loadingMsg').textContent = msg;
+}
+
+function hideLoading() {
+  document.getElementById('loading').style.display = 'none';
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorBox');
+  el.style.display = 'block';
+  el.innerHTML = '⚠ ' + msg;
+}
+
+function hideError() {
+  document.getElementById('errorBox').style.display = 'none';
+}
+
+// ── MAIN SCAN ─────────────────────────────────────────────────────────────
+async function runScan() {
+  const btn = document.getElementById('scanBtn');
+  btn.disabled = true;
+  document.getElementById('btnText').textContent = 'Scanning…';
+  document.getElementById('results').style.display = 'none';
+  hideError();
+  showLoading('Starting scan…');
+  setStep(1);
+
+  try {
+    // PHASE 1: Fetch and vet events
+    const p1Response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: MODEL,
+        max_tokens: 1000,
+        system: PHASE1_SYSTEM,
+        tools: [{ type: "web_search_20250305", name: "web_search" }],
+        messages: [{
+          role: "user",
+          content: `Today is ${new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}.
+
+Step 1: Search for upcoming events on https://www.reapsweb.com/Calendar.aspx
+Step 2: Search for upcoming events on https://www.meetup.com/nwreig/events/
+Step 3: Cross-reference both lists and identify which events appear on one or both platforms.
+Step 4: For each event, check the speaker name(s) listed and briefly assess whether they are known investors/educators vs. coaching program sellers.
+Step 5: Return the JSON array following the exact schema in your instructions.
+
+Remember: Return ONLY the raw JSON array, no markdown, no explanation.`
+        }]
+      })
+    });
+
+    setStep(2);
+    const p1Data = await p1Response.json();
+
+    if (p1Data.error) throw new Error(p1Data.error.message || "API error");
+
+    let rawText = "";
+    for (const block of (p1Data.content || [])) {
+      if (block.type === "text") rawText += block.text;
+    }
+
+    if (!rawText.trim()) throw new Error("No response received from Claude. Try again.");
+
+    setStep(3);
+    let events;
+    try {
+      events = parseEventJSON(rawText);
+    } catch(parseErr) {
+      throw new Error(parseErr.message);
+    }
+
+    setStep(4);
+    // Small delay so user sees step 4
+    await new Promise(r => setTimeout(r, 300));
+    setStep(5);
+    await new Promise(r => setTimeout(r, 300));
+
+    hideLoading();
+    renderResults(events);
+
+  } catch(err) {
+    hideLoading();
+    showError(err.message || "Something went wrong. Try again.");
+  }
+
+  btn.disabled = false;
+  document.getElementById('btnText').textContent = 'Refresh Events';
+  document.getElementById('btnIcon').textContent = '⟳';
+}
+
+// ── MANUAL VET ────────────────────────────────────────────────────────────
+async function analyzeManual() {
+  const input = document.getElementById('manualInput');
+  const text = input.value.trim();
+  if (!text) return;
+
+  hideError();
+  showLoading('Analyzing event…');
+
+  try {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: MODEL,
+        max_tokens: 1000,
+        system: PHASE1_SYSTEM,
+        tools: [{ type: "web_search_20250305", name: "web_search" }],
+        messages: [{
+          role: "user",
+          content: `Analyze this single event. If it is a URL, fetch the page. Research any named speakers. Return a JSON array with exactly one event object.\n\n${text}`
+        }]
+      })
+    });
+
+    const data = await response.json();
+    if (data.error) throw new Error(data.error.message);
+
+    let rawText = "";
+    for (const block of (data.content || [])) {
+      if (block.type === "text") rawText += block.text;
+    }
+
+    const events = parseEventJSON(rawText);
+    hideLoading();
+
+    const results = document.getElementById('results');
+    results.style.display = 'block';
+    document.getElementById('emptyState').style.display = 'none';
+    document.getElementById('eventCards').innerHTML =
+      events.map((e,i) => buildCard(e, 'm' + i)).join('') +
+      document.getElementById('eventCards').innerHTML;
+
+    input.value = '';
+  } catch(err) {
+    hideLoading();
+    showError(err.message);
+  }
+}
+
+// ── RENDER RESULTS ────────────────────────────────────────────────────────
+function renderResults(events) {
+  const results = document.getElementById('results');
+  const cards = document.getElementById('eventCards');
+  const count = document.getElementById('resultsCount');
+  const empty = document.getElementById('emptyState');
+
+  results.style.display = 'block';
+
+  if (!events || events.length === 0) {
+    empty.style.display = 'block';
+    cards.innerHTML = '';
+    count.textContent = '0 events';
+    return;
+  }
+
+  empty.style.display = 'none';
+  const goCount   = events.filter(e => e.verdict === 'GO').length;
+  const maybeCount= events.filter(e => e.verdict === 'MAYBE').length;
+  const skipCount = events.filter(e => e.verdict === 'SKIP').length;
+  count.textContent = `${events.length} total · ${goCount} recommended`;
+
+  // Show coverage summary banner
+  const banner = document.getElementById('coverageBanner');
+  if (banner) {
+    let msg = '';
+    if (skipCount === 0 && maybeCount === 0) {
+      msg = `All ${events.length} upcoming event${events.length===1?'':'s'} match your criteria.`;
+    } else {
+      const parts = [];
+      if (skipCount > 0) parts.push(`${skipCount} event${skipCount===1?' was':'s were'} filtered out as not relevant to your goals`);
+      if (maybeCount > 0) parts.push(`${maybeCount} marked Maybe — worth reading the full description`);
+      msg = parts.join('. ') + '. Nothing was hidden without a reason.';
+    }
+    banner.textContent = '🔍 ' + msg;
+    banner.style.display = 'block';
+  }
+
+  // Sort: GO → MAYBE → SKIP
+  events.sort((a, b) => {
+    const o = { GO:0, MAYBE:1, SKIP:2 };
+    return (o[a.verdict] ?? 1) - (o[b.verdict] ?? 1);
+  });
+
+  cards.innerHTML = events.map((e, i) => buildCard(e, 'e' + i)).join('');
+}
+
+// ── BUILD CARD HTML ───────────────────────────────────────────────────────
+function buildCard(e, uid) {
+  const vc = e.verdict === 'GO' ? 'go' : e.verdict === 'SKIP' ? 'skip' : 'maybe';
+  const vl = e.verdict === 'GO' ? 'Attend' : e.verdict === 'SKIP' ? 'Skip' : 'Maybe';
+
+  const src = e.source === 'both' ? 'both' : e.source === 'meetup' ? 'meetup' : 'reaps';
+  const srcLabel = e.source === 'both' ? 'Both Sources' : e.source === 'meetup' ? 'Meetup' : 'REAPS Site';
+  const sourceBadge = `<span class="sbadge ${src}">${srcLabel}</span>`;
+
+  const relTags = (e.relevant || []).map(t => `<span class="etag green">${t}</span>`).join('');
+  const rfTags  = (e.redFlags  || []).map(t => `<span class="etag red">⚠ ${t}</span>`).join('');
+
+  const speakersHtml = (e.speakers || []).length > 0
+    ? (e.speakers || []).map((name, si) =>
+        buildSpeakerRow(name, uid + 's' + si, e.title, e.summary)
+      ).join('')
+    : '';
+
+  const calUrl = buildCalUrl(e);
+  const calBtn = e.verdict !== 'SKIP'
+    ? `<a class="action-btn cal" href="${calUrl}" target="_blank">📅 Add to Google Calendar</a>` : '';
+  const sourceLinks = [];
+  if (e.reapsUrl)  sourceLinks.push(`<a class="action-btn" href="${e.reapsUrl}"  target="_blank">↗ REAPS Page</a>`);
+  if (e.meetupUrl) sourceLinks.push(`<a class="action-btn" href="${e.meetupUrl}" target="_blank">↗ Meetup Page</a>`);
+  const sourceRow = sourceLinks.length > 0 ? `<div class="source-links-row">${sourceLinks.join('')}</div>` : '';
+
+  return `
+<div class="event-card">
+  <div class="card-top">
+    <div class="verdict-badge ${vc}">
+      <div class="vicon">${e.emoji || (e.verdict==='GO'?'✓':e.verdict==='SKIP'?'✗':'?')}</div>
+      <div>${vl}</div>
+    </div>
+    <div class="card-info">
+      <div class="event-title">${sourceBadge}${escHtml(e.title||'Untitled Event')}</div>
+      <div class="event-meta">
+        ${e.date     ? `<span>📅 ${escHtml(e.date)}</span>`     : ''}
+        ${e.time     ? `<span>⏰ ${escHtml(e.time)}</span>`     : ''}
+        ${e.location ? `<span>📍 ${escHtml(e.location)}</span>` : ''}
+      </div>
+      ${relTags||rfTags ? `<div class="event-tags">${relTags}${rfTags}</div>` : ''}
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="section-label">Claude's Assessment</div>
+    ${escHtml(e.summary||'No summary available.')}
+  </div>
+  ${speakersHtml}
+  <div class="card-actions">
+    ${calBtn}
+    ${sourceRow}
+    ${e.cost ? `<span class="cost-chip">${escHtml(e.cost)}</span>` : ''}
+  </div>
+</div>`;
+}
+
+// ── SPEAKER ROW + ON-DEMAND BIO ───────────────────────────────────────────
+function buildSpeakerRow(name, uid, eventTitle, eventContext) {
+  const initials = name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  return `
+<div class="speaker-row">
+  <button class="speaker-toggle" id="stog-${uid}" onclick="toggleBio('${uid}','${escAttr(name)}','${escAttr(eventTitle)}','${escAttr(eventContext||'')}')">
+    <div class="speaker-avatar">${initials}</div>
+    <div style="flex:1">
+      <div class="spk-name">🎤 ${escHtml(name)}</div>
+      <div class="spk-role">Tap to research background</div>
+    </div>
+    <span class="toggle-arrow">▼</span>
+  </button>
+  <div class="speaker-bio-panel" id="sbio-${uid}">
+    <div class="bio-spinner" id="bspin-${uid}" style="display:none">
+      <div class="bspinner"></div> Researching speaker…
+    </div>
+    <div id="bcontent-${uid}"></div>
+  </div>
+</div>`;
+}
+
+// Tracks which bios have already been fetched
+const bioCache = {};
+
+async function toggleBio(uid, name, eventTitle, eventContext) {
+  const tog  = document.getElementById('stog-' + uid);
+  const panel = document.getElementById('sbio-' + uid);
+  const spin  = document.getElementById('bspin-' + uid);
+  const content = document.getElementById('bcontent-' + uid);
+
+  const isOpen = panel.classList.contains('open');
+
+  // Close
+  if (isOpen) {
+    panel.classList.remove('open');
+    tog.classList.remove('open');
+    return;
+  }
+
+  // Open
+  panel.classList.add('open');
+  tog.classList.add('open');
+
+  // Already fetched?
+  if (bioCache[uid]) return;
+
+  // Fetch bio
+  spin.style.display = 'flex';
+
+  try {
+    const prompt = buildBioPrompt(name, eventTitle, eventContext);
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: MODEL,
+        max_tokens: 1000,
+        system: prompt.system,
+        tools: [{ type: "web_search_20250305", name: "web_search" }],
+        messages: [{ role: "user", content: prompt.userMsg }]
+      })
+    });
+
+    const data = await response.json();
+    if (data.error) throw new Error(data.error.message);
+
+    let bioText = "";
+    for (const block of (data.content || [])) {
+      if (block.type === "text") bioText += block.text;
+    }
+
+    // Parse out LINKS line
+    const linkMatch = bioText.match(/LINKS:\s*([\s\S]*?)$/im);
+    let linksHtml = '';
+    if (linkMatch && linkMatch[1].trim().toLowerCase() !== 'none found') {
+      const urls = linkMatch[1].trim().split(/\s+/).filter(u => u.startsWith('http'));
+      linksHtml = `<div class="speaker-links">` +
+        urls.map(u => {
+          const label = u.includes('linkedin') ? 'LinkedIn' : u.includes('instagram') ? 'Instagram' : 'Website';
+          return `<a class="speaker-link" href="${u}" target="_blank">↗ ${label}</a>`;
+        }).join('') +
+        `</div>`;
+    }
+
+    // Remove LINKS line from displayed text
+    const displayText = bioText.replace(/LINKS:[\s\S]*$/im, '').trim();
+
+    // Check for red flag language
+    const rfKeywords = ['coaching program','upsell','sells a','requires payment','upfront fee','high-ticket','sales funnel'];
+    const hasRf = rfKeywords.some(kw => displayText.toLowerCase().includes(kw));
+    const rfHtml = hasRf
+      ? `<div class="rf-note">⚠ This speaker may be associated with a paid coaching program. Read the assessment carefully.</div>`
+      : '';
+
+    const html = `<p>${displayText.replace(/\n\n+/g,'</p><p>').replace(/\n/g,' ')}</p>${rfHtml}${linksHtml}`;
+    content.innerHTML = html;
+    bioCache[uid] = true;
+
+  } catch(err) {
+    content.innerHTML = `<span style="color:var(--danger);font-family:var(--mono);font-size:11px;">⚠ Could not load bio: ${escHtml(err.message)}</span>`;
+  }
+
+  spin.style.display = 'none';
+}
+
+// ── GOOGLE CALENDAR URL ───────────────────────────────────────────────────
+function buildCalUrl(e) {
+  const t = encodeURIComponent(e.title || 'REAPS Event');
+  const d = encodeURIComponent(
+    (e.summary || '') +
+    (e.reapsUrl  ? '\n\nREAPS page: '  + e.reapsUrl  : '') +
+    (e.meetupUrl ? '\nMeetup page: ' + e.meetupUrl : '')
+  );
+  const l = encodeURIComponent(e.location || '');
+  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${t}&details=${d}&location=${l}`;
+}
+
+// ── UTILS ─────────────────────────────────────────────────────────────────
+function escHtml(s) {
+  return String(s||'')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function escAttr(s) {
+  return String(s||'').replace(/'/g,"\\'").replace(/"/g,'&quot;').replace(/\n/g,' ');
+}
+</script>
+</body>
+</html>

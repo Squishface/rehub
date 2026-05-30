@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Property Purchase Checklist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 0.75rem;
+            color: #1f2937;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+            line-height: 1.2;
+        }
+        
+        .header p {
+            font-size: 0.85rem;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 0.75rem;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .stat-card {
+            background: #f3f4f6;
+            padding: 0.6rem;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+        
+        .stat-number {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 0.7rem;
+            color: #666;
+            margin-top: 0.15rem;
+            line-height: 1;
+        }
+        
+        .section {
+            margin-bottom: 0.75rem;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.6rem;
+            background: #f3f4f6;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            user-select: none;
+        }
+        
+        .section-header:hover {
+            background: #e5e7eb;
+        }
+        
+        .toggle-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+            font-size: 0.9rem;
+            line-height: 1;
+        }
+        
+        .section-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        
+        .section-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1f2937;
+            flex: 1;
+            word-break: break-word;
+            line-height: 1.2;
+        }
+        
+        .progress-bar {
+            width: 50px;
+            height: 4px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .section-content {
+            display: grid;
+            max-height: 1000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            opacity: 1;
+            margin-top: 0.5rem;
+        }
+        
+        .section-content.collapsed {
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0;
+        }
+        
+        .info-box {
+            background: #f0f9ff;
+            border-left: 4px solid #0284c7;
+            padding: 0.6rem;
+            border-radius: 6px;
+            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+            line-height: 1.3;
+            color: #0c4a6e;
+        }
+        
+        .checklist-item {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.6rem 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            align-items: flex-start;
+        }
+        
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #667eea;
+            flex-shrink: 0;
+        }
+        
+        .item-content {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .item-label {
+            font-weight: 500;
+            color: #1f2937;
+            margin-bottom: 0.15rem;
+            font-size: 0.9rem;
+            line-height: 1.2;
+        }
+        
+        .item-description {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.3;
+            word-break: break-word;
+        }
+        
+        .checklist-item input[type="checkbox"]:checked + .item-content .item-label {
+            text-decoration: line-through;
+            color: #999;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.65rem 0.75rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #1f2937;
+        }
+        
+        .btn-secondary:hover {
+            background: #cbd5e1;
+        }
+        
+        @media (min-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .content {
+                padding: 1rem;
+            }
+            
+            .header {
+                padding: 1.25rem 1rem;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.05rem;
+            }
+            
+            .stats {
+                gap: 0.75rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            body {
+                padding: 1.5rem;
+            }
+            
+            .container {
+                max-width: 900px;
+            }
+            
+            .content {
+                padding: 1.5rem;
+            }
+            
+            .header {
+                padding: 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .header p {
+                font-size: 0.95rem;
+            }
+            
+            .section-title {
+                font-size: 1.2rem;
+            }
+            
+            .item-label {
+                font-size: 0.95rem;
+            }
+            
+            .item-description {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+            
+            .button-group {
+                gap: 1rem;
+            }
+            
+            button {
+                min-width: 150px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏠 Property Purchase Checklist</h1>
+            <p>Based on "The Millionaire Real Estate Investor" by Gary Keller</p>
+        </div>
+        
+        <div class="content">
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalItems">0</div>
+                    <div class="stat-label">Total</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completedItems">0</div>
+                    <div class="stat-label">Done</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completionPercent">0%</div>
+                    <div class="stat-label">Progress</div>
+                </div>
+            </div>
+            
+            <!-- THE SEVENTEEN ISSUES OVERVIEW -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="toggle-icon">▼</span>
+                    <span class="section-title">📋 THE SEVENTEEN ISSUES OF OWN A MILLION</span>
+                    <div class="progress-bar"><div class="progress-fill" data-section="0"></div></div>
+                </div>
+                <div class="section-content">
+                    <div class="info-box">
+                        <strong>Key Principle:</strong> Gary Keller identifies 17 core issues every millionaire real estate investor must master. They're organized into 5 pillars: Criteria, Terms, Network, Money, and You.
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">CRITERIA—Always the Guiding Light</div>
+                            <div class="item-description">1. Stick or Switch | 2. Become an Expert | 3. Think in Units</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">TERMS—Hold Them Dear</div>
+                            <div class="item-description">4. Control Property & Negotiate Everything | 5. Finance Creatively | 6. Max Your NOI | 7. Know Disposition Options</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">NETWORK—Together Everyone Achieves More</div>
+                            <div class="item-description">8. Make Talent Your Priority | 9. Leverage & Top-Grade | 10. Written Proposals & Contracts | 11. Protect Reputation & Operate with Confidence</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">MONEY—Give It a Work Ethic</div>
+                            <div class="item-description">12. Hold Money Accountable to Work For You | 13. Minimize Tax Exposure</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">YOU—Your Primary Asset</div>
+                            <div class="item-description">14. Protect Your Time | 15. Protect Your Assets | 16. Be Learning-Based | 17. Be Accountable</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CREATIVE FINANCING SECTION -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="toggle-icon">▼</span>
+                    <span class="section-title">🏦 CREATIVE FINANCING FOR ACQUISITIONS</span>
+                    <div class="progress-bar"><div class="progress-fill" id="financingProgressBar" data-section="6" style="width: 0%;"></div></div>
+                </div>
+                <div class="section-content">
+                    <div class="info-box">
+                        <strong>Key Principle:</strong> Creative financing is the way around traditional lending binds. Select which method(s) you're using for this property to help you get in with less of your own money and lower monthly debt service. Master these 6 options.
+                    </div>
+                    
+                    <!-- Financing Method 1: Owner Financing -->
+                    <div style="padding: 0.75rem; background: #f9fafb; border-radius: 6px; margin-bottom: 0.75rem; border-left: 3px solid #667eea;">
+                        <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                            <input type="radio" name="financingMethod" id="fin-owner" value="owner" onchange="updateFinancingSelection()" style="margin-top: 3px; cursor: pointer; accent-color: #667eea;">
+                            <div style="flex: 1;">
+                                <label for="fin-owner" style="font-weight: 600; color: #1f2937; cursor: pointer; display: block; margin-bottom: 0.25rem;">1. Owner Financing</label>
+                                <div style="font-size: 0.85rem; color: #666; line-height: 1.3;">The seller carries the mortgage for you. You make payments to seller instead of bank. Requires seller to agree and lender approval (if property has existing mortgage). <strong>Advantage:</strong> More flexible terms, lower down payment possible, faster closing.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Financing Method 2: Assumptions -->
+                    <div style="padding: 0.75rem; background: #f9fafb; border-radius: 6px; margin-bottom: 0.75rem; border-left: 3px solid #667eea;">
+                        <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                            <input type="radio" name="financingMethod" id="fin-assumption" value="assumption" onchange="updateFinancingSelection()" style="margin-top: 3px; cursor: pointer; accent-color: #667eea;">
+                            <div style="flex: 1;">
+                                <label for="fin-assumption" style="font-weight: 600; color: #1f2937; cursor: pointer; display: block; margin-bottom: 0.25rem;">2. Assumptions</label>
+                                <div style="font-size: 0.85rem; color: #666; line-height: 1.3;">You take responsibility for the seller's existing mortgage (when allowed by lender). <strong>Advantage:</strong> Keep seller's original loan terms (often better than current rates), lower interest rate than new loan. <strong>Requirement:</strong> Lender must approve assumption and your creditworthiness.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Financing Method 3: Wraps -->
+                    <div style="padding: 0.75rem; background: #f9fafb; border-radius: 6px; margin-bottom: 0.75rem; border-left: 3px solid #667eea;">
+                        <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                            <input type="radio" name="financingMethod" id="fin-wrap" value="wrap" onchange="updateFinancingSelection()" style="margin-top: 3px; cursor: pointer; accent-color: #667eea;">
+                            <div style="flex: 1;">
+                                <label for="fin-wrap" style="font-weight: 600; color: #1f2937; cursor: pointer; display: block; margin-bottom: 0.25rem;">3. Wraps</label>
+                                <div style="font-size: 0.85rem; color: #666; line-height: 1.3;">Owner offers you a new loan while keeping and paying down their original loan (the new loan "wraps" the original). You pay owner, owner pays original lender. <strong>Advantage:</strong> Seller benefits from rate difference (incentivizes them), you get creative terms and lower down payment. <strong>Risk:</strong> Seller must stay current on original loan.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Financing Method 4: Lease Options -->
+                    <div style="padding: 0.75rem; background: #f9fafb; border-radius: 6px; margin-bottom: 0.75rem; border-left: 3px solid #667eea;">
+                        <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                            <input type="radio" name="financingMethod" id="fin-lease" value="lease" onchange="updateFinancingSelection()" style="margin-top: 3px; cursor: pointer; accent-color: #667eea;">
+                            <div style="flex: 1;">
+                                <label for="fin-lease" style="font-weight: 600; color: #1f2937; cursor: pointer; display: block; margin-bottom: 0.25rem;">4. Lease Options</label>
+                                <div style="font-size: 0.85rem; color: #666; line-height: 1.3;">Lease the property from seller until you have the equity or cash to buy it. Option gives you right (not obligation) to purchase at set price. <strong>Advantage:</strong> Build equity through rent credits, lock in price now, test property before full ownership. Rent payments go toward purchase price if exercised.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Financing Method 5: Private Seconds -->
+                    <div style="padding: 0.75rem; background: #f9fafb; border-radius: 6px; margin-bottom: 0.75rem; border-left: 3px solid #667eea;">
+                        <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                            <input type="radio" name="financingMethod" id="fin-private" value="private" onchange="updateFinancingSelection()" style="margin-top: 3px; cursor: pointer; accent-color: #667eea;">
+                            <div style="flex: 1;">
+                                <label for="fin-private" style="font-weight: 600; color: #1f2937; cursor: pointer; display: block; margin-bottom: 0.25rem;">5. Private Seconds</label>
+                                <div style="font-size: 0.85rem; color: #666; line-height: 1.3;">You obtain a second loan to cover your down payment on a primary mortgage loan (primary mortgage lender doesn't know about second). <strong>Advantage:</strong> Reduce your out-of-pocket down payment significantly. <strong>Note:</strong> Secondary liens are generally secured against the property and first in line if deal goes sour.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Financing Method 6: Syndications -->
+                    <div style="padding: 0.75rem; background: #f9fafb; border-radius: 6px; margin-bottom: 0.75rem; border-left: 3px solid #667eea;">
+                        <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                            <input type="radio" name="financingMethod" id="fin-syndication" value="syndication" onchange="updateFinancingSelection()" style="margin-top: 3px; cursor: pointer; accent-color: #667eea;">
+                            <div style="flex: 1;">
+                                <label for="fin-syndication" style="font-weight: 600; color: #1f2937; cursor: pointer; display: block; margin-bottom: 0.25rem;">6. Syndications</label>
+                                <div style="font-size: 0.85rem; color: #666; line-height: 1.3;">You involve other investors and partners in your acquisitions. Pool capital together to make deal happen. <strong>Advantage:</strong> Access more cash without personal liability, share risk among partners. <strong>Tradeoff:</strong> Complex legal structure, need to negotiate terms with partners, reduced control and profit share.</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Supporting Information -->
+                    <div style="margin-top: 1rem; padding: 0.75rem; background: #f0f9ff; border-left: 3px solid #0284c7; border-radius: 6px;">
+                        <div style="font-size: 0.85rem; color: #0c4a6e; line-height: 1.4;">
+                            <strong>Borrowing Stages:</strong> Your ability to borrow goes through three stages: <strong>Credit</strong> (creditworthiness from credit score, payment history), <strong>Equity</strong> (having savings/assets available as down payment), and <strong>Cash Flow</strong> (property income to cover loan payments). Lenders evaluate all three.<br><br>
+                            <strong>Secondary Liens:</strong> Private seconds and wraps carry less favorable terms than primary mortgages. First liens are generally secured against the property. Know that secondary lenders account for this in their pricing.<br><br>
+                            <strong>Syndication Strategy:</strong> Any of these 6 financing scenarios can be syndicated if you are unable or unwilling to provide cash or collateral. Negotiate the deal and bring in partners and investors. Requires clear legal agreements on roles, capital contributions, profit sharing, and exit strategy.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- MASTER THE TERMS SECTION -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="toggle-icon">▼</span>
+                    <span class="section-title">💰 FINANCIAL MODEL: TWO WEALTH ENGINES</span>
+                    <div class="progress-bar"><div class="progress-fill" data-section="1"></div></div>
+                </div>
+                <div class="section-content">
+                    <div class="info-box">
+                        <strong>Key Principle:</strong> There are two ways to build wealth in real estate: Equity Buildup (price appreciation + debt paydown) and Cash Flow Growth (monthly income after expenses).
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Understand the Path of Money</div>
+                            <div class="item-description">Money has a path and you must guide it to places that yield greatest financial growth and most substantial net worth.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Create a Budget for Investments</div>
+                            <div class="item-description">Stay on the Path. Differentiate between what you want and what you need. Make personal discipline to stick to it.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Check Your Personal Net Worth</div>
+                            <div class="item-description">Keep household P&L and balance sheet to track net worth over time. Examine total often and ask: "How can I make it grow?"</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Equity Buildup Strategy</div>
+                            <div class="item-description">Increases your net worth in real estate assets. Comes from twin forces of price appreciation and debt paydown.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Cash Flow Growth Strategy</div>
+                            <div class="item-description">Provides stream of unearned income. Possible when you buy right, finance wisely and control your expenses.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Master the "Buy It Right—Pay It Down—Pay It Off" Motto</div>
+                            <div class="item-description">Buy Right: make your money going in. Pay It Down: add significantly to Equity Buildup. Pay It Off: ensure growing stream of unearned income where money works for you.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FIVE LAWS OF LEAD GENERATION -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="toggle-icon">▼</span>
+                    <span class="section-title">🎯 FIVE LAWS OF LEAD GENERATION</span>
+                    <div class="progress-bar"><div class="progress-fill" data-section="2"></div></div>
+                </div>
+                <div class="section-content">
+                    <div class="info-box">
+                        <strong>Key Principle:</strong> A strong Lead Generation Model removes luck from the equation. Quality is in the quantity—you must look at many deals to find the right one.
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Law #1: Never Compromise</div>
+                            <div class="item-description">Bear in mind your Strict Criteria and never violate it. Strong desire to do deal can lead to trouble.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Law #2: Be a Shopper, Not a Buyer</div>
+                            <div class="item-description">Better to miss a good deal than to buy a bad one. Love the process, the thrill of the hunt.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Law #3: Timing Matters</div>
+                            <div class="item-description">Be first or last to make an offer. Look for advantage of an uncompetitive environment.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Law #4: It's a Numbers Game</div>
+                            <div class="item-description">The more suspects you investigate, the better your sense of true prospects. Investigate 50 deals for every 1 you buy.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Law #5: Be Organized and Systematic</div>
+                            <div class="item-description">Building great criteria requires focus over time. Refine criteria continually to understand your market.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ACQUISITION MODEL SECTION -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="toggle-icon">▼</span>
+                    <span class="section-title">🏗️ ACQUISITION MODEL: TWO STRATEGIES</span>
+                    <div class="progress-bar"><div class="progress-fill" data-section="3"></div></div>
+                </div>
+                <div class="section-content">
+                    <div class="info-box">
+                        <strong>Key Principle:</strong> By following the Acquisition Model and buying right, you virtually guarantee success. The key? Make your money going in.
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Strategy #1: Buy for Cash</div>
+                            <div class="item-description">Use one of four strategies: Find & Refer; Control & Assign; Buy & Sell; Buy, Improve & Sell (BRRRR).</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Strategy #2: Buy for Cash Flow and Equity</div>
+                            <div class="item-description">Explore three options: Lease Option; Buy & Hold; Buy, Improve & Hold.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Master Buy & Sell Strategy</div>
+                            <div class="item-description">Looking for: cash, ensuring fast net profit payoff. MUST know your numbers going in. Use Terms Worksheet: Buy & Sell.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Master Buy & Hold Strategy</div>
+                            <div class="item-description">The TRUE wealth-building option. Long-term using twin forces of Equity Buildup and Cash Flow Growth. Use Terms Worksheet: Buy & Hold.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WORK NETWORK MODEL SECTION -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="toggle-icon">▼</span>
+                    <span class="section-title">🤝 WORK NETWORK MODEL: THREE CIRCLES</span>
+                    <div class="progress-bar"><div class="progress-fill" data-section="4"></div></div>
+                </div>
+                <div class="section-content">
+                    <div class="info-box">
+                        <strong>Key Principle:</strong> Your Work Network is your investing lifeline. Build it by bringing together a powerful group of people.
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Inner Circle: Monthly Touchpoints</div>
+                            <div class="item-description">Select group you trust most. Mentors, consultants, partners, informal board of directors. Meet monthly.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Support Circle: Per Transaction</div>
+                            <div class="item-description">Key fiduciary people in your investment life. Professionals you rely on for transaction details and needed connections.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Service Circle: As Needed</div>
+                            <div class="item-description">Specialized independent contractors and freelancers who perform specific functions for a particular property.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Work Your Work Network</div>
+                            <div class="item-description">Build it, maintain it, engage it. Finding right people takes time. Build systematically, maintain relationships, engage professionally.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FIVE RULES OF ENGAGEMENT SECTION -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="toggle-icon">▼</span>
+                    <span class="section-title">📜 FIVE RULES OF ENGAGEMENT</span>
+                    <div class="progress-bar"><div class="progress-fill" data-section="5"></div></div>
+                </div>
+                <div class="section-content">
+                    <div class="info-box">
+                        <strong>Key Principle:</strong> How you conduct yourself determines your long-term success and reputation in real estate investing.
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Rule #1: Do Deals</div>
+                            <div class="item-description">Action and execution are essential. Actually do it.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Rule #2: Keep Your Word</div>
+                            <div class="item-description">Your reputation is everything. Follow through on commitments without exception.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Rule #3: Don't Talk Badly About Anyone</div>
+                            <div class="item-description">No one trusts a gossip. Keep negative comments to yourself. Maintain professional courtesy always.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Rule #4: Don't Shortchange Anyone</div>
+                            <div class="item-description">Deal fairly. Honor commitments. Pay what you promised. Don't nickel-and-dime people.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Rule #5: Refer Business</div>
+                            <div class="item-description">Share opportunities. Pass leads to your network. Build goodwill through generosity and reciprocity.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ISSUE 13: TAX MINIMIZATION & 1031 EXCHANGE SECTION -->
+            <div class="section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="toggle-icon">▼</span>
+                    <span class="section-title">💼 ISSUE 13: TAX MINIMIZATION & 1031 EXCHANGES</span>
+                    <div class="progress-bar"><div class="progress-fill" data-section="6"></div></div>
+                </div>
+                <div class="section-content">
+                    <div class="info-box">
+                        <strong>Key Principle:</strong> Minimize tax exposure through detailed accounting, strategic depreciation, and leveraging 1031 exchanges to defer capital gains taxes. Work with a qualified CPA specializing in real estate.
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Hire Qualified CPA Early</div>
+                            <div class="item-description">Engage a CPA specializing in real estate investment BEFORE acquisition. Examples: John Haughney CPA. This person is a key member of your Work Network.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Track All Expenses Comprehensively</div>
+                            <div class="item-description">Document all acquisition costs: lead generation, inspections, finder's fees, real estate commissions, property evaluations. Keep detailed records during ownership for tax deductions.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Depreciate the Property</div>
+                            <div class="item-description">Use depreciation to offset rental income. The government requires property depreciation. Consult CPA on depreciation schedules and recapture rules.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Deduct Operating Expenses</div>
+                            <div class="item-description">Property repairs, improvements, maintenance, and expenses adding value are deductible. Use to offset rental income. Can be recaptured for years after incurred.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Understand 1031 Exchange Rules</div>
+                            <div class="item-description">A 1031 exchange allows deferral of capital gains taxes when selling one property and buying another (replacement property). NOT a property swap—you sell and reinvest proceeds into a new property to defer taxes.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Timeline: 45 Days + 180 Days</div>
+                            <div class="item-description">After selling a "relinquished property," you have 45 days to identify a replacement property. You have a total of 180 days to close. Begin searching for replacement property before or during marketing of your sale.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Use a Qualified Intermediary</div>
+                            <div class="item-description">Required: A qualified intermediary must facilitate the 1031 exchange. They hold the sale proceeds and purchase the replacement property. Consult your CPA to identify and vet qualified intermediaries.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">1031 Exchange vs. Direct Property Swap</div>
+                            <div class="item-description">Many believe 1031 is swapping properties directly. FALSE. A 1031 exchange is designed to SELL one property and REPLACE it with another, deferring capital gains taxes. Direct swaps are possible but NOT the 1031 mechanism.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Defer Capital Gains Indefinitely</div>
+                            <div class="item-description">Repeat 1031 exchanges across multiple properties to defer capital gains taxes indefinitely. Keep purchasing larger, more expensive properties. Pay taxes only when you stop exchanging and hold final property.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Consider IRAs & Qualified Accounts</div>
+                            <div class="item-description">Use IRAs and 1031 exchanges together with CPA guidance for additional tax deferral strategies. Complex planning—requires qualified tax professional oversight.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checklist-item">
+                        <input type="checkbox" onchange="updateProgress()">
+                        <div class="item-content">
+                            <div class="item-label">Engage CPA Before Sale</div>
+                            <div class="item-description">Plan 1031 exchanges BEFORE closing a sale. Your CPA and qualified intermediary must coordinate. Late planning can disqualify the exchange or incur penalties.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn-primary" onclick="downloadChecklist()">📥 Download</button>
+                <button class="btn-secondary" onclick="importChecklist()">📤 Upload</button>
+                <button class="btn-secondary" onclick="resetChecklist()">🔄 Reset</button>
+                <input type="file" id="importFile" accept=".txt" style="display: none;" onchange="handleImport(event)">
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleSection(header) {
+            const content = header.nextElementSibling;
+            header.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+        }
+        
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const total = checkboxes.length;
+            const percent = total > 0 ? Math.round((checked / total) * 100) : 0;
+            
+            document.getElementById('totalItems').textContent = total;
+            document.getElementById('completedItems').textContent = checked;
+            document.getElementById('completionPercent').textContent = percent + '%';
+            
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, sectionIndex) => {
+                const sectionCheckboxes = section.querySelectorAll('input[type="checkbox"]');
+                const sectionChecked = Array.from(sectionCheckboxes).filter(cb => cb.checked).length;
+                const sectionTotal = sectionCheckboxes.length;
+                const sectionPercent = sectionTotal > 0 ? (sectionChecked / sectionTotal) * 100 : 0;
+                
+                const progressFill = section.querySelector('.progress-fill');
+                if (progressFill) {
+                    progressFill.style.width = sectionPercent + '%';
+                }
+            });
+            
+            localStorage.setItem('checklistProgress', JSON.stringify(Array.from(checkboxes).map(cb => cb.checked)));
+        }
+        
+        function downloadChecklist() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            let text = 'REAL ESTATE PROPERTY PURCHASE CHECKLIST\n';
+            text += 'Based on "The Millionaire Real Estate Investor" by Gary Keller\n';
+            text += '================================================\n\n';
+            
+            document.querySelectorAll('.section').forEach((section) => {
+                const title = section.querySelector('.section-title').textContent;
+                text += title + '\n' + '='.repeat(title.length) + '\n\n';
+                
+                section.querySelectorAll('.checklist-item').forEach((item) => {
+                    const checkbox = item.querySelector('input[type="checkbox"]');
+                    const label = item.querySelector('.item-label').textContent;
+                    const description = item.querySelector('.item-description').textContent;
+                    const checked = checkbox.checked ? '[X]' : '[ ]';
+                    
+                    text += `${checked} ${label}\n   ${description}\n\n`;
+                });
+                
+                text += '\n';
+            });
+            
+            const completed = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const total = checkboxes.length;
+            text += `Progress: ${completed}/${total} items (${Math.round((completed/total)*100)}%)\n`;
+            text += `Generated: ${new Date().toLocaleString()}\n`;
+            
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Property_Checklist_${new Date().getTime()}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }
+        
+        function importChecklist() {
+            document.getElementById('importFile').click();
+        }
+        
+        function handleImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const text = e.target.result;
+                    const lines = text.split('\n');
+                    
+                    // Parse the file to restore checkbox states
+                    let checkboxIndex = 0;
+                    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                    
+                    lines.forEach(line => {
+                        if (line.match(/^\[X\]/)) {
+                            if (checkboxIndex < checkboxes.length) {
+                                checkboxes[checkboxIndex].checked = true;
+                                checkboxIndex++;
+                            }
+                        } else if (line.match(/^\[\s\]/)) {
+                            if (checkboxIndex < checkboxes.length) {
+                                checkboxes[checkboxIndex].checked = false;
+                                checkboxIndex++;
+                            }
+                        }
+                    });
+                    
+                    updateProgress();
+                    alert('✅ Checklist imported successfully!');
+                } catch (error) {
+                    alert('❌ Error reading file: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+        
+        function resetChecklist() {
+            if (confirm('Reset all progress?')) {
+                document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                    cb.checked = false;
+                });
+                document.querySelectorAll('input[type="radio"]').forEach(rb => {
+                    rb.checked = false;
+                });
+                localStorage.removeItem('checklistProgress');
+                localStorage.removeItem('financingMethod');
+                updateProgress();
+            }
+        }
+        
+        function updateFinancingSelection() {
+            const selected = document.querySelector('input[name="financingMethod"]:checked');
+            if (selected) {
+                localStorage.setItem('financingMethod', selected.value);
+                // Set progress bar to 100%
+                document.getElementById('financingProgressBar').style.width = '100%';
+            } else {
+                // Reset progress bar to 0%
+                document.getElementById('financingProgressBar').style.width = '0%';
+            }
+        }
+        
+        window.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('checklistProgress');
+            if (saved) {
+                const progress = JSON.parse(saved);
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach((cb, idx) => {
+                    if (progress[idx]) cb.checked = true;
+                });
+            }
+            
+            // Restore financing method selection
+            const savedFinancing = localStorage.getItem('financingMethod');
+            if (savedFinancing) {
+                const radioButton = document.querySelector(`input[name="financingMethod"][value="${savedFinancing}"]`);
+                if (radioButton) {
+                    radioButton.checked = true;
+                    // Set progress bar to 100% if financing method was previously selected
+                    document.getElementById('financingProgressBar').style.width = '100%';
+                }
+            }
+            
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
